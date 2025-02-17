@@ -17,12 +17,20 @@
     <header>
         <img class="logo" src="{{ asset('assets/img/picker-upper_logo.gif') }}" alt="Logo">
 
-        <div>
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-primary">Logout</button>
-            </form>
-        </div>
+        @if (Route::has('login'))
+            @auth
+                <div>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="">Logout</button>
+                    </form>
+                    <a href="{{ url('/dashboard') }}" class="">Dashboard</a>
+                </div>
+            @else
+                <a href="{{ route('login') }}" class="">Login</a>
+                <a href="{{ route('register') }}" class="">Register</a>
+            @endauth
+        @endif
     </header>
 
     <main class="container">
