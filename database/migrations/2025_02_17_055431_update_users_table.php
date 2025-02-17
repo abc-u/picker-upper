@@ -8,7 +8,6 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('username')->after('id')->unique(); // ユーザー名を追加
             $table->text('user_icon')->nullable()->after('password'); // ユーザーアイコンを追加
             $table->boolean('is_admin')->default(false)->after('user_icon'); // 管理者フラグを追加
         });
