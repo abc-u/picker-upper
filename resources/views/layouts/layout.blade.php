@@ -15,7 +15,14 @@
 
 <body>
     <header>
-            <img class="logo" src="{{ asset('assets/img/picker-upper_logo.gif') }}" alt="Logo">
+        <img class="logo" src="{{ asset('assets/img/picker-upper_logo.gif') }}" alt="Logo">
+
+        <div>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
+        </div>
     </header>
 
     <main class="container">
@@ -26,15 +33,16 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" crossorigin="anonymous">
+    </script>
 
     <!-- External JavaScript -->
     <script src="js/script.js"></script>
     <script src="js/map.js"></script>
 
     <!-- Google Maps API -->
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
+    </script>
 </body>
 
 </html>
