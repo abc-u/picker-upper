@@ -1,4 +1,5 @@
 @extends('layouts.layout')
+
 @section('content')
     @foreach ($questions as $question)
         <a href="{{ route('questions.show', $question->id) }}" class="post">
@@ -6,17 +7,20 @@
             <p class="card-text">
                 内容 : {{ $question->body }}
             </p>
-            <p class="card-text">投稿者：Seed Techさん</p>
+            <p class="card-text">投稿者：{{ $question->user->name ?? '匿名' }}さん</p>
             投稿日時 : {{ $question->created_at }}
         </a>
-        <dev class="editdelete">
-            <a href="{{ route('questions.edit', $question->id) }}" class="edit">edit</a>
-            <form action='{{ route('questions.destroy', $question->id) }}' method='post'>
-                @csrf
-                @method('delete')
-                <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("本当に削除しますか？");'>
-            </form>
-        </dev>
+
+        @if(auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $question->user_id))
+            <div class="edidel">
+                <a href="{{ route('questions.edit', $question->id) }}" class="btn btn-danger">edit</a>
+                <form action="{{ route('questions.destroy', $question->id) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <input type="submit" value="delete" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">
+                </form>
+            </div>
+        @endif
     @endforeach
 
     <a href="{{ route('questions.create') }}" class="">

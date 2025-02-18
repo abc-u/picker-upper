@@ -7,43 +7,42 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
-  }
+}
 
-  /* ロゴのデザイン */
-  .logo {
+/* ロゴのデザイン */
+.logo {
     height: 80px;
-  }
+}
 
-  /* ヘッダー内のレイアウト調整 */
-  .header-container {
+/* ヘッダー内のレイアウト調整 */
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
+}
 
-  main.container{
+main.container {
     max-width: 800px;
     display: flex;
     align-items: center;
     flex-direction: column;
-  }
+}
 
-
-  /* メインコンテンツ */
-  main {
+/* メインコンテンツ */
+main {
     flex: 1;
     padding: 50px;
-  }
+}
 
-  /* フッターのデザイン */
-  footer {
+/* フッターのデザイン */
+footer {
     text-align: center;
     padding: 30px;
     background-color: #ffd9d9;
     border-top: 1px solid #ddd;
-  }
+}
 
-  .post{
+.post {
     background-color: white;
     padding: 20px 15px;
     border-radius: 20px;
@@ -58,40 +57,39 @@ body {
     /* p {
       margin-bottom: 5px;
     } */
-  }
+}
 
-  .title{
+.title {
     font-size: 30px;
     font-weight: bold; /* 太字 */
     margin: 10px;
-  }
+}
 
-  .edit{
-    color:blue;
-    padding-right: 10px;
-  }
-
-  .delete{
-    color:red;
-  }
-
-  .editdelete{
-    display:flex;
+.edidele {
+    display: flex;
     font-weight: bold; /* 太字 */
+}
 
-  }
+.edit {
+    color: blue;
+}
 
-  .post-detail{
+.delete {
+    color: red;
+}
+
+
+.post-detail {
     font-size: 15px;
     margin-bottom: 5px;
-  }
+}
 
-  .comment-body{
+.comment-body {
     font-size: 20px;
     margin: 10px;
-  }
+}
 
-  .map{
+.map {
     margin: 20px;
     font-size: 40px;
-  }
+}
