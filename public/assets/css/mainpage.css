@@ -1,0 +1,8 @@
+
+.custom-icon {
+    font-size: 100px; /* アイコンサイズを大きく */
+    position: fixed; /* 画面の固定配置 */
+    bottom: 100px; /* 画面下からの距離 */
+    right: 30px; /* 画面右からの距離 */
+    z-index: 1000; /* 他の要素の上に配置 */
+}

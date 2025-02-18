@@ -18,5 +18,9 @@
             </form>
         </dev>
     @endforeach
-    <i class="fa-solid fa-square-plus"></i>
+
+    <a href="{{ route('questions.create') }}" class="">
+        <i class="fa-solid fa-square-plus custom-icon"></i>
+    </a>
+    <link rel="stylesheet" href="{{ asset('assets/css/mainpage.css') }}" />
 @endsection
