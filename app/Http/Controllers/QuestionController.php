@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -28,6 +29,10 @@ class QuestionController extends Controller
     {
         $questions = Question::all();
         return view('questions.main', compact('questions'));
+    }
+    function create()
+    {
+        return view('questions.create');
     }
     function show($id)
     {
@@ -56,6 +61,22 @@ class QuestionController extends Controller
     {
         $post = Question::find($id);
         $post->delete();
+        return redirect()->route('questions.main');
+    }
+
+    function store(Request $request)
+    {
+        //dd($request);
+        $post = new Question;
+        $post -> title = $request -> title;
+        $post -> body = $request -> body;
+        $post -> user_id = Auth::id();
+
+        $post->latitude = $request->latitude;
+        $post->longitude = $request->longitude;
+
+        $post -> save();
+
         return redirect()->route('questions.main');
     }
 }

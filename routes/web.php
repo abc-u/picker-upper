@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
@@ -44,6 +45,12 @@ Route::delete('/questions/{id}',[QuestionController::class,'destroy'])->name('qu
 
 Route::put('/questions/{id}',[QuestionController::class,'update'])->name('questions.update');
 
+Route::get('/posts/create',[QuestionController::class,'create'])->name('questions.create');
+
 Route::post('/comments',[AnswerController::class,'store'])->name('comments.store');
+
+Route::post('/questions',[QuestionController::class,'store'])->name('questions.store');
+
+Route::get('/map', [MapController::class, 'index'])->name('map.index');
 
 require __DIR__.'/auth.php';
