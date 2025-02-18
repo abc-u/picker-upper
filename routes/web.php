@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,11 +31,19 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::get('/', [PostController::class, 'index'])->name('posts.index');
-Route::get('/map', [PostController::class, 'map'])->name('posts.map');
-Route::get('/', [PostController::class, 'main'])->name('posts.main');
-Route::get('/show', [PostController::class, 'show'])->name('posts.show');
-Route::get('/edit', [PostController::class, 'show'])->name('posts.show');
-Route::get('/delete', [PostController::class, 'show'])->name('posts.show');
+
+Route::get('/map', [QuestionController::class, 'map'])->name('questions.map');
+
+Route::get('/', [QuestionController::class, 'main'])->name('questions.main');
+
+Route::get('/questions/{id}',[QuestionController::class,'show'])->name('questions.show');
+
+Route::get('/questions/{id}/edit',[QuestionController::class,'edit'])->name('questions.edit');
+
+Route::delete('/questions/{id}',[QuestionController::class,'destroy'])->name('questions.destroy');
+
+Route::put('/questions/{id}',[QuestionController::class,'update'])->name('questions.update');
+
+Route::post('/comments',[AnswerController::class,'store'])->name('comments.store');
 
 require __DIR__.'/auth.php';
