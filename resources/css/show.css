@@ -9,13 +9,6 @@ body {
     font-family: Arial, sans-serif;
   }
 
-  /* ヘッダーのデザイン */
-  header {
-    background-color: #ff9393;
-    padding: 10px 20px;
-    border-bottom: 1px solid #ddd;
-  }
-
   /* ロゴのデザイン */
   .logo {
     height: 80px;
