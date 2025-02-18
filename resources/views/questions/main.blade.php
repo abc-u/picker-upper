@@ -18,5 +18,5 @@
             </form>
         </dev>
     @endforeach
-    <i class="fa-solid fa-plus"></i>
+    <i class="fa-solid fa-square-plus"></i>
 @endsection
