@@ -18,4 +18,5 @@
             </form>
         </dev>
     @endforeach
+    <i class="fa-solid fa-plus"></i>
 @endsection
