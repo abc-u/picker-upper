@@ -4,34 +4,48 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title', 'Default Title')</title>
+    <title>@yield('title', 'Picker-Upper')</title>
+    <!-- Font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         crossorigin="anonymous" />
-    <!-- External CSS -->
+        <!-- External CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/header-design.css') }}" />
     @vite('resources/css/show.css')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body>
     <header>
-        <img class="logo" src="{{ asset('assets/img/picker-upper_logo.gif') }}" alt="Logo">
+        <div class="header_logo-container">
+            <img class="logo" src="{{ asset('assets/img/picker-upper_logo.gif') }}" alt="Logo">
+        </div>
 
-        @if (Route::has('login'))
-            @auth
-                <div>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="">Logout</button>
-                    </form>
-                    <a href="{{ url('/dashboard') }}" class="">Dashboard</a>
-                </div>
-            @else
-                <a href="{{ route('login') }}" class="">Login</a>
-                <a href="{{ route('register') }}" class="">Register</a>
-            @endauth
-        @endif
+        <div class="header-dropdown">
+            <button id="dropdownButton" class="header-dropdown-button"><i class="fa-regular fa-user"></i></button>
+            <div id="dropdownMenu" class="header-links dropdown-hidden">
+                @if (Route::has('login'))
+                    @auth
+                        <div class="header-links_menu">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit">Logout</button>
+                            </form>
+                            <a href="{{ url('/dashboard') }}">Dashboard</a>
+                        </div>
+                    @else
+                        <div class="header-links_menu">
+                            <a href="{{ route('login') }}">Login</a>
+                            <a href="{{ route('register') }}">Register</a>
+                        </div>
+                    @endauth
+                @endif
+            </div>
+        </div>
     </header>
+
 
     <main class="container">
         @yield('content')
@@ -51,6 +65,7 @@
     <!-- Google Maps API -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
     </script>
+    <script src="{{ asset('assets/js/header.js') }}"></script>
 </body>
 
 </html>
