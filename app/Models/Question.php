@@ -15,7 +15,7 @@ class Question extends Model {
     }
 
     public function answers() {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Answer::class, "questions_id");
     }
 
     public function tags() {
