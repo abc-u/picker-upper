@@ -37,30 +37,22 @@
         }
     </script>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8 mt-5">
-            コメント一覧
-            @foreach ($question->answers as $answer)
-                <div class="card mt-3">
-                    <h5 class="card-header">投稿者：{{ $answer->user->name }}</h5>
-                    <div class="card-body">
-                        <h5 class="card-title">投稿日時：{{ $answer->created_at }}</h5>
-                        <p class="card-text">内容：{{ $answer->body }}</p>
-                    </div>
-                </div>
-            @endforeach
+    <p>コメント一覧</p>
+    @foreach ($question->answers as $answer)
+        <div class="post">
+            <h5 class="">コメント：{{ $answer->body }}</h5>
+            <p class="">投稿者：{{ $answer->user->name }}</p>
+            <p class="">投稿日時：{{ $answer->created_at }}</p>
         </div>
-    </div>
+    @endforeach
 
-    <h2>以下の記事にコメントします</h2>
+
+    <h5>以下の記事にコメントします</h5>
     <form action="{{ route('comments.store') }}" method="post">
         @csrf
         <input type="hidden" name="question_id" value="{{ $question->id }}">
-        <div class="form-group">
-            <label>コメント</label>
-            <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
-        </div>
+        <label>コメント</label>
+        <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
         <button type="submit" class="btn btn-primary mt-3">コメントする</button>
     </form>
-
 @endsection
