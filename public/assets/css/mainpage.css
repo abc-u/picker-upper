@@ -1,3 +1,30 @@
+.main_question-container {
+    margin-bottom: 24px;
+    width: 100%;
+
+    .question-card {
+        background-color: white;
+        padding: 20px 15px;
+        border-radius: 20px;
+        background-color: white;
+        border: 1px solid #000000;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        display: block;
+        color: #000000;
+        transition: .2s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            color: rgb(112, 112, 255);
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+    }
+}
+
+
+
+
 
 .custom-icon {
     font-size: 100px; /* アイコンサイズを大きく */

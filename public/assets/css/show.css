@@ -1,62 +1,18 @@
-/* --- style.css --- */
-
-/* 全体のレイアウト */
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-/* ロゴのデザイン */
-.logo {
-    height: 80px;
-}
-
-/* ヘッダー内のレイアウト調整 */
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-main.container {
-    max-width: 800px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-/* メインコンテンツ */
-main {
-    flex: 1;
-    padding: 50px;
-}
-
-/* フッターのデザイン */
-footer {
-    text-align: center;
-    padding: 30px;
-    background-color: #ffd9d9;
-    border-top: 1px solid #ddd;
-}
-
-.post {
+.show_question-card {
     background-color: white;
     padding: 20px 15px;
     border-radius: 20px;
     background-color: white;
     border: 1px solid #000000;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    margin: 0 auto 11px;
     width: 100%;
     display: block;
     color: #000000;
-    text-decoration: none;
-    /* p {
-      margin-bottom: 5px;
-    } */
+    margin-bottom: 24px;
+}
+
+.show_map-section {
+    width: 100%;
 }
 
 .title {

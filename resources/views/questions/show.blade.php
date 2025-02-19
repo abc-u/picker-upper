@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="post">
+    <div class="show_question-card">
         <h5 class="card-title">タイトル : {{ $question->title }}</h5>
         <p class="card-text">
             内容 : {{ $question->body }}
@@ -19,25 +19,27 @@
         </div>
     @endif
 
-    <h4>投稿場所</h4>
-    <div id="map" style="height: 400px; width: 100%;"></div>
+    <div class="show_map-section">
+        <h4>投稿場所</h4>
+        <div id="map" style="height: 400px;"></div>
 
-    <script>
-        function initMap() {
-            var location = {
-                lat: parseFloat("{{ $question->latitude ?? 35.6895 }}"),
-                lng: parseFloat("{{ $question->longitude ?? 139.6917 }}")
-            };
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
-                center: location
-            });
-            var marker = new google.maps.Marker({
-                position: location,
-                map: map
-            });
-        }
-    </script>
+        <script>
+            function initMap() {
+                var location = {
+                    lat: parseFloat("{{ $question->latitude ?? 35.6895 }}"),
+                    lng: parseFloat("{{ $question->longitude ?? 139.6917 }}")
+                };
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 12,
+                    center: location
+                });
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+        </script>
+    </div>
 
     <p>コメント一覧</p>
     @foreach ($question->answers as $answer)

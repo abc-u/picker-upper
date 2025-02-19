@@ -12,8 +12,10 @@
         crossorigin="anonymous" />
         <!-- External CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/master.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/header-design.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/show.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/mainpage.css') }}" />
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
@@ -47,8 +49,10 @@
     </header>
 
 
-    <main class="container">
-        @yield('content')
+    <main>
+        <div class="container">
+            @yield('content')
+        </div>
     </main>
 
     <footer>Copyright &copy; MORI YUGO.</footer>

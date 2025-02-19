@@ -1,10 +1,18 @@
 header {
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     padding: 8px 32px;
     background-color: #ff9393;
     position: fixed;
     width: 100%;
+
+    .header_logo-container {
+
+        .logo {
+            height: 80px;
+        }
+    }
 }
 
 /* 初期状態は非表示 */
