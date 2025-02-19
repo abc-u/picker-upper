@@ -13,7 +13,7 @@
         <!-- External CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/header-design.css') }}" />
-    @vite('resources/css/show.css')
+    <link rel="stylesheet" href="{{ asset('assets/css/show.css') }}" />
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 

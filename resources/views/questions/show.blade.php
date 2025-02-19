@@ -1,21 +1,23 @@
 @extends('layouts.layout')
 @section('content')
-    <a href="{{ route('questions.show', $question->id) }}" class="post">
+    <div class="post">
         <h5 class="card-title">タイトル : {{ $question->title }}</h5>
         <p class="card-text">
             内容 : {{ $question->body }}
         </p>
-        <p class="card-text">投稿者：Seed Techさん</p>
+        <p class="card-text">投稿者：{{ $question->user->name ?? '匿名' }}</p>
         投稿日時 : {{ $question->created_at }}
-    </a>
-    <dev class="editdelete">
-        <a href="{{ route('questions.edit', $question->id) }}" class="edit">edit</a>
-        <form action='{{ route('questions.destroy', $question->id) }}' method='post'>
-            @csrf
-            @method('delete')
-            <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("本当に削除しますか？");'>
-        </form>
-    </dev>
+    </div>
+    @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $question->user_id))
+        <div class="editdelete">
+            <a href="{{ route('questions.edit', $question->id) }}" class="edit">edit</a>
+            <form action="{{ route('questions.destroy', $question->id) }}" method="post">
+                @csrf
+                @method('delete')
+                <input type="submit" value="削除" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">
+            </form>
+        </div>
+    @endif
 
     <h4>投稿場所</h4>
     <div id="map" style="height: 400px; width: 100%;"></div>
