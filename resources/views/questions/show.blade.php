@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="show_question-card">
+    <div class="show_card">
         <h5 class="card-title">タイトル : {{ $question->title }}</h5>
         <p class="card-text">
             内容 : {{ $question->body }}
@@ -43,7 +43,7 @@
 
     <p>コメント一覧</p>
     @foreach ($question->answers as $answer)
-        <div class="post">
+        <div class="show_card">
             <h5 class="">コメント：{{ $answer->body }}</h5>
             <p class="">投稿者：{{ $answer->user->name }}</p>
             <p class="">投稿日時：{{ $answer->created_at }}</p>

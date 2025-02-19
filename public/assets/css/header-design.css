@@ -1,14 +1,18 @@
+:root {
+    --main-color-red: #ff9393;
+    --white: #ffffff;
+}
+
 header {
     z-index: 1000;
     display: flex;
     justify-content: space-between;
     padding: 8px 32px;
-    background-color: #ff9393;
+    background-color: var(--main-color-red);
     position: fixed;
     width: 100%;
 
     .header_logo-container {
-
         .logo {
             height: 80px;
         }
@@ -16,22 +20,21 @@ header {
 }
 
 /* 初期状態は非表示 */
-.dropdown-hidden {
-    max-height: 0;
-    opacity: 0;
+/* .dropdown-hidden {
+    right: -100%;
     overflow: hidden;
     transition: max-height 0.1s ease-out, opacity 0.1s ease-out;
-}
+} */
 
 /* 表示状態 */
-.dropdown-visible {
-    max-height: 200px; /* メニューの内容に応じて調整 */
+/* .dropdown-visible {
+    right: 100%;
     opacity: 1;
     transition: max-height 0.1s ease-in, opacity 0.1s ease-in;
-}
+} */
 
 /* ヘッダーやボタンのスタイル（必要に応じて調整） */
-.header-dropdown {
+.header-menu {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,7 +43,7 @@ header {
     /* position: absolute; */
 }
 
-.header-dropdown-button {
+.header-menu-button {
     display: block;
     width: 70px;
     height: 70px;
@@ -53,21 +56,31 @@ header {
 }
 
 .header-links {
-    /* position: absolute; */
 
     .header-links_menu {
+        width: 270px;
         display: flex;
         flex-direction: column;
-        background-color: white;
+        background-color: var(--main-color-red);
         padding: 16px;
         text-align: center;
-        border-radius: 8px;
+        /* border-radius: 8px; */
         position: absolute;
-        top: 88px;
-        right: 55px;
-        box-shadow: 1px 4px 10px -2px rgb(99, 99, 99);
+        top: 96px;
+        /* right: 0; */
+        /* box-shadow: 1px 4px 10px -2px rgb(99, 99, 99); */
+        transition: .3s ease;
 
-        a, form {
+        &.in {
+            right: 0;
+        }
+
+        &.out {
+            right: -270px;
+        }
+
+        a,
+        form {
             margin-bottom: 8px;
         }
     }

@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const dropdownButton = document.getElementById("dropdownButton");
-    const dropdownMenu = document.getElementById("dropdownMenu");
+    const menuButton = document.getElementById("menuButton");
+    const menuList = document.querySelector(".header-links_menu");
 
-    dropdownButton.addEventListener("click", function () {
+    menuButton.addEventListener("click", function () {
         // メニューが隠れているかどうかでクラスを切り替える
-        if (dropdownMenu.classList.contains("dropdown-hidden")) {
-            dropdownMenu.classList.remove("dropdown-hidden");
-            dropdownMenu.classList.add("dropdown-visible");
+        if (menuList.classList.contains("out")) {
+            menuList.classList.remove("out");
+            menuList.classList.add("in");
         } else {
-            dropdownMenu.classList.remove("dropdown-visible");
-            dropdownMenu.classList.add("dropdown-hidden");
+            menuList.classList.remove("in");
+            menuList.classList.add("out");
         }
     });
 });
