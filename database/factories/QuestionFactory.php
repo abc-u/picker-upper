@@ -32,10 +32,6 @@ class QuestionFactory extends Factory
             // Cebu City周辺のランダムな緯度・経度を生成
             'latitude'  => $this->faker->latitude($minLatitude, $maxLatitude),
             'longitude' => $this->faker->longitude($minLongitude, $maxLongitude),
-            // tag_id は nullable として optional() を利用（Tag テーブルにレコードがあればランダムに取得、なければ null）
-            'tag_id'    => $this->faker->optional()->randomElement(
-                Tag::pluck('id')->toArray()
-            ),
         ];
     }
 }

@@ -36,20 +36,23 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/', [QuestionController::class, 'main'])->name('questions.main');
 
-Route::get('/questions/{id}',[QuestionController::class,'show'])->name('questions.show');
+Route::get('/questions/{id}', [QuestionController::class, 'show'])->name('questions.show');
 
-Route::get('/questions/{id}/edit',[QuestionController::class,'edit'])->name('questions.edit');
+Route::get('/questions/{id}/edit', [QuestionController::class, 'edit'])->name('questions.edit');
 
-Route::delete('/questions/{id}',[QuestionController::class,'destroy'])->name('questions.destroy');
+Route::delete('/questions/{id}', [QuestionController::class, 'destroy'])->name('questions.destroy');
 
-Route::put('/questions/{id}',[QuestionController::class,'update'])->name('questions.update');
+Route::put('/questions/{id}', [QuestionController::class, 'update'])->name('questions.update');
 
-Route::get('/posts/create',[QuestionController::class,'create'])->name('questions.create');
+Route::get('/posts/create', [QuestionController::class, 'create'])->name('questions.create');
 
-Route::post('/comments',[AnswerController::class,'store'])->name('comments.store');
+Route::post('/comments', [AnswerController::class, 'store'])->name('comments.store');
 
-Route::post('/questions',[QuestionController::class,'store'])->name('questions.store');
+Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
 
 Route::get('/map', [MapController::class, 'index'])->name('map.index');
 
-require __DIR__.'/auth.php';
+Route::get('/questions/tag/{tag}', [QuestionController::class, 'filterByTag'])->name('questions.filterByTag');
+
+
+require __DIR__ . '/auth.php';
