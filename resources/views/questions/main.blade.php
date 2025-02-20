@@ -1,6 +1,11 @@
 @extends('layouts.layout')
 
 @section('content')
+<h4>view map</h4>
+    <a href="{{ route('map.index') }}" class="">
+        <img src="{{ asset('assets/img/map.png') }}" alt="説明文" class="map-image">
+    </a>
+
     @foreach ($questions as $question)
         <div class="main_question-container">
             <a href="{{ route('questions.show', $question->id) }}" class="question-card">

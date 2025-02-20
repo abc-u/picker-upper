@@ -33,3 +33,9 @@
     right: 30px; /* 画面右からの距離 */
     z-index: 1000; /* 他の要素の上に配置 */
 }
+
+.map-image {
+    width: 500px;
+    height: auto;
+    margin: 30px;
+  }

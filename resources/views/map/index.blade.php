@@ -11,6 +11,7 @@
 
     <script>
         var map;
+        var currentInfoWindow = null; // 現在開いている情報ウィンドウを管理
 
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
@@ -35,18 +36,25 @@
 
                     var infoWindow = new google.maps.InfoWindow({
                         content: `
-                            <div>
-                                <h5>${location.title}</h5>
-                                <a href="${location.url}" class="">詳細を見る</a>
-                            </div>
-                        `
+                    <div style="max-width: 200px; white-space: normal; word-wrap: break-word;">
+                        <h5 style="font-size: 14px; margin-bottom: 5px;">${location.title}</h5>
+                        <a href="${location.url}" style="word-break: break-word;">詳細を見る</a>
+                    </div>
+                `
                     });
 
                     marker.addListener("click", function() {
-                        infoWindow.open(map, marker);
-                    });
+                        // すでに開いている情報ウィンドウがあれば閉じる
+                        if (currentInfoWindow) {
+                            currentInfoWindow.close();
+                        }
 
-                    infoWindow.open(map, marker);
+                        // 新しい情報ウィンドウを開く
+                        infoWindow.open(map, marker);
+
+                        // 現在の情報ウィンドウを更新
+                        currentInfoWindow = infoWindow;
+                    });
                 }
             });
 
@@ -62,13 +70,6 @@
                         // マップの中心を現在地に更新
                         map.setCenter(userLocation);
 
-                        // 現在地のマーカーを追加
-                        new google.maps.Marker({
-                            position: userLocation,
-                            map: map,
-                            title: "現在地"
-                        });
-
                     }, function() {
                         alert("現在地を取得できませんでした。");
                     });
@@ -80,6 +81,4 @@
     </script>
 
     <button id="current-location-btn" type="button">現在地に移動</button>
-
-
 @endsection
