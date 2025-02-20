@@ -1,6 +1,10 @@
 :root {
     --main-color-red: #ff9393;
     --white: #ffffff;
+    --editButton-color: #00b4d8;
+    --editButton-color_hover: #005f71;
+    --deleteButton-color: #e63946;
+    --deleteButton-color_hover: #952c35;
 }
 
 header {
@@ -62,7 +66,7 @@ header {
         display: flex;
         flex-direction: column;
         background-color: var(--main-color-red);
-        padding: 16px;
+        padding: 16px 0;
         text-align: center;
         /* border-radius: 8px; */
         position: absolute;
@@ -79,9 +83,21 @@ header {
             right: -270px;
         }
 
-        a,
-        form {
-            margin-bottom: 8px;
+        .header-links_menuList {
+            display: block;
+            width: 100%;
+            padding: 8px 0;
+            color: var(--white);
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            font-weight: bold;
+            transition: .3s ease;
+
+            &:hover {
+                background-color: var(--white);
+                color: var(--main-color-red);
+            }
         }
     }
 }

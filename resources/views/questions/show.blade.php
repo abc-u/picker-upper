@@ -9,12 +9,12 @@
         投稿日時 : {{ $question->created_at }}
     </div>
     @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $question->user_id))
-        <div class="editdelete">
-            <a href="{{ route('questions.edit', $question->id) }}" class="edit">edit</a>
+        <div class="edit-delete-buttons">
+            <a href="{{ route('questions.edit', $question->id) }}" class="edit-button">edit</a>
             <form action="{{ route('questions.destroy', $question->id) }}" method="post">
                 @csrf
                 @method('delete')
-                <input type="submit" value="削除" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">
+                <input type="submit" value="delete" class="delete-button" onclick="return confirm('本当に削除しますか？');">
             </form>
         </div>
     @endif

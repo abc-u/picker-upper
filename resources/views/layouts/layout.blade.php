@@ -33,16 +33,18 @@
                 @if (Route::has('login'))
                     @auth
                         <div class="header-links_menu out">
+                            <a class="header-links_menuList" href="{{ route('questions.main') }}">Dashboard</a>
+                            <a class="header-links_menuList" href="{{ route('map.index') }}">MAP</a>
+                            <a class="header-links_menuList" href="{{ route('questions.main') }}">Profile</a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit">Logout</button>
+                                <button type="submit" class="header-links_menuList">Logout</button>
                             </form>
-                            <a href="{{ url('/dashboard') }}">Dashboard</a>
                         </div>
                     @else
                         <div class="header-links_menu out">
-                            <a href="{{ route('login') }}">Login</a>
-                            <a href="{{ route('register') }}">Register</a>
+                            <a class="header-links_menuList" href="{{ route('login') }}">Login</a>
+                            <a class="header-links_menuList" href="{{ route('register') }}">Register</a>
                         </div>
                     @endauth
                 @endif

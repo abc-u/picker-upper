@@ -33,7 +33,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/map', [QuestionController::class, 'map'])->name('questions.map');
 
 Route::get('/', [QuestionController::class, 'main'])->name('questions.main');
 
