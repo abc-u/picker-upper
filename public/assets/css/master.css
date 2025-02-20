@@ -1,4 +1,11 @@
-/* --- style.css --- */
+:root {
+    --main-color-red: #ff9393;
+    --white: #ffffff;
+    --editButton-color: #00b4d8;
+    --editButton-color_hover: #005f71;
+    --deleteButton-color: #e63946;
+    --deleteButton-color_hover: #952c35;
+}
 
 /* 全体のレイアウト */
 body {
@@ -16,9 +23,6 @@ main {
 
     .container {
         max-width: 800px;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
     }
 }
 
@@ -28,4 +32,37 @@ footer {
     padding: 30px;
     background-color: #ffd9d9;
     border-top: 1px solid #ddd;
+}
+
+.edit-delete-buttons {
+    margin-top: 8px;
+    margin-right: 16px;
+    display: flex;
+    justify-content: right;
+}
+
+.edit-button {
+    color: var(--editButton-color);
+    margin-right: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: .3s ease;
+
+    &:hover {
+        color: var(--editButton-color_hover);
+    }
+}
+
+.delete-button {
+    background: transparent;
+    border: none;
+    color: var(--deleteButton-color);
+    font-size: 20px;
+    font-weight: bold;
+    transition: .3s ease;
+
+    &:hover {
+        color: var(--deleteButton-color_hover);
+    }
 }

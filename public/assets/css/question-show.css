@@ -1,3 +1,13 @@
+:root {
+    --main-color-red: #ff9393;
+    --white: #ffffff;
+    --editButton-color: #00b4d8;
+    --editButton-color_hover: #005f71;
+    --deleteButton-color: #e63946;
+    --deleteButton-color_hover: #952c35;
+}
+
+
 .show_card {
     background-color: white;
     padding: 20px 15px;
@@ -8,44 +18,9 @@
     width: 100%;
     display: block;
     color: #000000;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 }
 
 .show_map-section {
     width: 100%;
-}
-
-.title {
-    font-size: 30px;
-    font-weight: bold; /* 太字 */
-    margin: 10px;
-}
-
-.edidele {
-    display: flex;
-    font-weight: bold; /* 太字 */
-}
-
-.edit {
-    color: blue;
-}
-
-.delete {
-    color: red;
-}
-
-
-.post-detail {
-    font-size: 15px;
-    margin-bottom: 5px;
-}
-
-.comment-body {
-    font-size: 20px;
-    margin: 10px;
-}
-
-.map {
-    margin: 20px;
-    font-size: 40px;
 }
