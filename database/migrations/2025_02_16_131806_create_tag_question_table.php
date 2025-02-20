@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tag_question', function (Blueprint $table) {
-            $table->foreignId('questions_id')->constrained('questions')->onDelete('cascade');
-            $table->foreignId('tags_id')->constrained('tags')->onDelete('cascade');
-            $table->primary(['questions_id', 'tags_id']); // 複合キー
+        Schema::create('question_tags', function (Blueprint $table) {
+            $table->foreignId('question_id')->constrained('questions')->onDelete('cascade');
+            $table->foreignId('tag_id')->constrained('tags')->onDelete('cascade');
+            $table->primary(['question_id', 'tag_id']); // 複合キー
         });
     }
 

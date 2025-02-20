@@ -11,6 +11,6 @@ class Tag extends Model {
     protected $fillable = ['body'];
 
     public function questions() {
-        return $this->belongsToMany(Question::class, 'tag_question', 'tags_id', 'questions_id');
+        return $this->belongsToMany(Question::class, 'question_tags');
     }
 }

@@ -19,6 +19,6 @@ class Question extends Model {
     }
 
     public function tags() {
-        return $this->belongsToMany(Tag::class, 'tag_question', 'questions_id', 'tags_id');
+        return $this->belongsToMany(Tag::class, 'question_tags');
     }
 }
