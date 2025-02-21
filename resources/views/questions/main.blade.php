@@ -2,22 +2,22 @@
 
 @section('content')
     <!-- タグフィルタ -->
-    <div class="tag-filter">
-        @if (Route::currentRouteName() === 'questions.main')
-            @foreach ($tags as $tag)
-                <a href="{{ route('questions.filterByTag', $tag->id) }}" class="btn btn-outline-primary m-1 tag-btn">
-                    {{ $tag->body }}
-                </a>
-            @endforeach
-        @else
-            @foreach ($tags as $tag)
-                <a href="{{ route('questions.main') }}" class="btn btn-secondary">全て表示</a>
-                <p class="btn m-1 tag-btn btn-primary">
-                    {{ $tag->body }}
-                </p>
-            @endforeach
-        @endif
-    </div>
+    @if (Route::currentRouteName() === 'questions.main')
+        @foreach ($tags as $tag)
+            <a href="{{ route('questions.filterByTag', $tag->id) }}" class="btn btn-outline-primary m-1 tag-btn">
+                {{ $tag->body }}
+            </a>
+        @endforeach
+    @else
+        @foreach ($tags as $tag)
+            <a href="{{ route('questions.main') }}" class="btn btn-secondary">全て表示</a>
+            <p class="btn m-1 tag-btn btn-primary">
+                {{ $tag->body }}
+            </p>
+        @endforeach
+    @endif
+
+
 
 
     {{--  @dd($questions)  --}}

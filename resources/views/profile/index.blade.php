@@ -1,14 +1,26 @@
 @extends('layouts.layout')
 
 @section('content')
-    <p>{{ $user->name }}</p>
-    <p>{{ $user->email }}</p>
-    <p>
-        <img src="{{ asset('assets/img/' . ($user->user_icon ? basename($user->user_icon) : 'sample.png')) }}" alt="サンプル画像"
-            class="rounded-circle img-thumbnail" width="200" height="200">
-    </p>
+    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}" />
+    <div class="user-profile d-flex align-items-center p-4 bg-light rounded shadow">
+        <!-- ユーザー画像 -->
+        <div class="user-image me-4">
+            <img src="{{ asset('assets/img/' . ($user->user_icon ? basename($user->user_icon) : 'sample.png')) }}"
+                alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm" width="200" height="200">
+        </div>
 
-    <a href="{{ route('profile.update') }}">編集</a>
+        <!-- ユーザー情報 -->
+        <div class="user-info">
+            <p class="fw-bold mb-1 text-primary">名前</p>
+            <p class="fs-5 text-dark">{{ $user->name }}</p>
+            <p class="fw-bold mb-1 text-secondary">メールアドレス</p>
+            <p class="fs-6 text-muted">{{ $user->email }}</p>
+            <a href="{{ route('profile.update') }}">編集</a>
+        </div>
+    </div>
+
+
+
     <h3>自分の質問一覧</h3>
     @foreach ($questions as $question)
         <div class="main_question-container">

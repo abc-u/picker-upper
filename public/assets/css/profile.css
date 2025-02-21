@@ -1,0 +1,13 @@
+.user-profile {
+    display: flex;
+    align-items: center; /* 垂直方向の中央揃え */
+    justify-content: space-between; /* 左右に配置 */
+}
+
+.user-info {
+    flex: 1; /* 名前とメールを左側に配置 */
+}
+
+.user-image {
+    flex-shrink: 0; /* 画像のサイズを固定 */
+}
