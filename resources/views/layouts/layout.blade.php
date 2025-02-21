@@ -35,7 +35,7 @@
                         <div class="header-links_menu out">
                             <a class="header-links_menuList" href="{{ route('questions.main') }}">Dashboard</a>
                             <a class="header-links_menuList" href="{{ route('map.index') }}">MAP</a>
-                            <a class="header-links_menuList" href="{{ route('questions.main') }}">Profile</a>
+                            <a class="header-links_menuList" href="{{ route('profile.index') }}">Profile</a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="header-links_menuList">Logout</button>

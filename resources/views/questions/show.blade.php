@@ -8,6 +8,10 @@
         <p class="card-text">投稿者：{{ $question->user->name ?? '匿名' }}</p>
         投稿日時 : {{ $question->created_at }}
     </div>
+    <p>タグ：</p>
+    @foreach ($question->tags as $tag)
+        <div class="tag">{{ $tag->body }}</div>
+    @endforeach
     @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $question->user_id))
         <div class="edit-delete-buttons">
             <a href="{{ route('questions.edit', $question->id) }}" class="edit-button">edit</a>
@@ -43,10 +47,12 @@
 
     <p>コメント一覧</p>
     @foreach ($question->answers as $answer)
-        <div class="show_card">
-            <h5 class="">コメント：{{ $answer->body }}</h5>
-            <p class="">投稿者：{{ $answer->user->name }}</p>
-            <p class="">投稿日時：{{ $answer->created_at }}</p>
+        <div class="show_card answer">
+            <div class= "show_card_answer">
+                <h5 class="">{{ $answer->body }}</h5>
+                <p class="">投稿者：{{ $answer->user->name }}</p>
+                <p class="">投稿日時：{{ $answer->created_at }}</p>
+            </div>
         </div>
     @endforeach
 

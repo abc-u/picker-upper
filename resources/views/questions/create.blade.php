@@ -20,14 +20,15 @@
 
         <div class="form-group mt-3">
             <label>タグを選択:</label>
-            @foreach ($tags as $tag)
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}" id="tag{{ $tag->id }}">
-                    <label class="form-check-label" for="tag{{ $tag->id }}">
+            <div class="d-flex flex-wrap">
+                @foreach ($tags as $tag)
+                    <button type="button" class="btn btn-outline-primary m-1 tag-btn"
+                            data-id="{{ $tag->id }}" onclick="toggleTag(this)">
                         {{ $tag->body }}
-                    </label>
-                </div>
-            @endforeach
+                    </button>
+                @endforeach
+            </div>
+            <input type="hidden" name="tags" id="selectedTags">
         </div>
 
         <div>
@@ -48,6 +49,23 @@
             } else {
                 alert("このブラウザは位置情報をサポートしていません。");
             }
+        }
+
+        function toggleTag(button) {
+            button.classList.toggle('btn-primary');
+            button.classList.toggle('btn-outline-primary');
+
+            let tagId = button.getAttribute('data-id');
+            let selectedTags = document.getElementById('selectedTags');
+            let tagsArray = selectedTags.value ? selectedTags.value.split(',') : [];
+
+            if (tagsArray.includes(tagId)) {
+                tagsArray = tagsArray.filter(id => id !== tagId);
+            } else {
+                tagsArray.push(tagId);
+            }
+
+            selectedTags.value = tagsArray.join(',');
         }
     </script>
 @endsection

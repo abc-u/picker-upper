@@ -100,7 +100,7 @@ class QuestionController extends Controller
     public function filterByTag(Tag $tag)
     {
         $questions = $tag->questions()->with('user')->latest()->get();
-        $tags = Tag::all(); // すべてのタグを取得
-        return view('questions.main', compact('questions', 'tags'));
+        // $tags = $tag; // すべてのタグを取得
+        return view('questions.mainfilter', compact('questions', 'tag'));
     }
 }

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('body');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->decimal('latitude', 10, 7);
-            $table->decimal('longitude', 10, 7);
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
             $table->timestamps();
         });
     }
