@@ -1,11 +1,6 @@
 @extends('layouts.layout')
 
 @section('content')
-    <h4>view map</h4>
-    <a href="{{ route('map.index') }}" class="">
-        <img src="{{ asset('assets/img/map.png') }}" alt="説明文" class="map-image">
-    </a>
-
     <!-- タグフィルタ -->
     <div class="tag-filter">
         {{--  <a href="{{ route('questions.main') }}" class="btn btn-secondary">全て表示</a>  --}}
@@ -44,7 +39,18 @@
         </div>
     @endforeach
 
-    <a href="{{ route('questions.create') }}" class="">
-        <i class="fa-solid fa-square-plus custom-icon"></i>
-    </a>
+    @auth
+        <a href="{{ route('questions.create') }}" class="">
+            <i class="fa-solid fa-square-plus custom-icon"></i>
+        </a>
+    @endauth
+@endsection
+
+@section('map-content')
+    <div class="main_map-section">
+        <h4>view map</h4>
+        <a href="{{ route('map.index') }}" class="">
+            <img src="{{ asset('assets/img/map.png') }}" alt="説明文" class="map-image">
+        </a>
+    </div>
 @endsection
