@@ -4,11 +4,19 @@
         @csrf
         <div class="form-group">
             <label>タイトル</label>
-            <input type="text" class="form-control" placeholder="タイトルを入力して下さい" name="title">
+            <input type="text" class="form-control @error('title') is-invalid @enderror" placeholder="タイトルを入力して下さい"
+                name="title" value="{{ old('title') }}">
+            @error('title')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
+
         <div class="form-group">
             <label>内容</label>
-            <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
+            <textarea class="form-control @error('body') is-invalid @enderror" placeholder="内容" rows="5" name="body">{{ old('body') }}</textarea>
+            @error('body')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <input type="hidden" id="latitude" name="latitude">
@@ -22,8 +30,8 @@
             <label>タグを選択:</label>
             <div class="d-flex flex-wrap">
                 @foreach ($tags as $tag)
-                    <button type="button" class="btn btn-outline-primary m-1 tag-btn"
-                            data-id="{{ $tag->id }}" onclick="toggleTag(this)">
+                    <button type="button" class="btn btn-outline-primary m-1 tag-btn" data-id="{{ $tag->id }}"
+                        onclick="toggleTag(this)">
                         {{ $tag->body }}
                     </button>
                 @endforeach

@@ -30,7 +30,7 @@
                 <p class="card-text">投稿者：{{ $question->user->name ?? '匿名' }}さん</p>
                 <p>投稿日時 : {{ $question->created_at }}</p>
                 {{--  @dd(@$question->tags)  --}}
-                <p class="d-inline">タグ：</p>
+                {{--  <p class="d-inline">タグ：</p>  --}}
                 @foreach ($question->tags as $tag)
                     <p class="btn btn-outline-primary m-1 tag-btn">
                         {{ $tag->body }}

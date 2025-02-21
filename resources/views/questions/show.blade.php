@@ -9,7 +9,7 @@
         <p>
             投稿日時 : {{ $question->created_at }}
         </p>
-        <p class="d-inline">タグ：</p>
+        {{--  <p class="d-inline">タグ：</p>  --}}
         @foreach ($question->tags as $tag)
             <p class="btn btn-outline-primary m-1 tag-btn">
                 {{ $tag->body }}
