@@ -8,12 +8,10 @@
 
     <!-- タグフィルタ -->
     <div class="tag-filter">
-        {{--  <a href="{{ route('questions.main') }}" class="btn btn-secondary">全て表示</a>  --}}
-        @foreach ($tags as $tag)
-            <a href="{{ route('questions.filterByTag', $tag->id) }}" class="btn btn-outline-primary m-1 tag-btn">
-                {{ $tag->body }}
-            </a>
-        @endforeach
+        <a href="{{ route('questions.main') }}" class="btn btn-secondary">全て表示</a>
+        <a href="{{ route('questions.filterByTag', $tag->id) }}" class="btn m-1 tag-btn btn-primary">
+            {{ $tag->body }}
+        </a>
     </div>
 
     {{--  @dd($questions)  --}}

@@ -5,8 +5,8 @@
     --editButton-color_hover: #005f71;
     --deleteButton-color: #e63946;
     --deleteButton-color_hover: #952c35;
+    --pale-red-color: #ffd9d9;
 }
-
 
 .show_card {
     background-color: white;
@@ -19,6 +19,19 @@
     display: block;
     color: #000000;
     margin-bottom: 16px;
+
+    &.answer {
+        background-color: var(--pale-red-color);
+
+    }
+
+    .show_card_answer {
+
+        p {
+            padding: 0px;
+            margin-bottom: 0px;
+        }
+    }
 }
 
 .show_map-section {
