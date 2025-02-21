@@ -91,8 +91,16 @@ class QuestionController extends Controller
 
         // タグを保存（中間テーブルを利用）
         if ($request->has('tags')) {
-            $post->tags()->sync($request->tags);
+            // 文字列ならカンマ区切りで分割、配列ならそのまま処理
+            $tags = is_string($request->tags) ? explode(',', $request->tags) : (array) $request->tags;
+
+            // 整数型に変換
+            $tags = array_map('intval', $tags);
+
+            // タグを同期
+            $post->tags()->sync($tags);
         }
+
 
         return redirect()->route('questions.main')->with('success', '質問が作成されました！');
     }
@@ -100,7 +108,8 @@ class QuestionController extends Controller
     public function filterByTag(Tag $tag)
     {
         $questions = $tag->questions()->with('user')->latest()->get();
-        // $tags = $tag; // すべてのタグを取得
-        return view('questions.mainfilter', compact('questions', 'tag'));
+        $tags = Tag::where('id', $tag->id)->get(); // 指定された $tag のみ取得
+
+        return view('questions.main', compact('questions', 'tags'));
     }
 }

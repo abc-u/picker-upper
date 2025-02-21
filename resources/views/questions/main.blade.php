@@ -3,13 +3,22 @@
 @section('content')
     <!-- タグフィルタ -->
     <div class="tag-filter">
-        {{--  <a href="{{ route('questions.main') }}" class="btn btn-secondary">全て表示</a>  --}}
-        @foreach ($tags as $tag)
-            <a href="{{ route('questions.filterByTag', $tag->id) }}" class="btn btn-outline-primary m-1 tag-btn">
-                {{ $tag->body }}
-            </a>
-        @endforeach
+        @if (Route::currentRouteName() === 'questions.main')
+            @foreach ($tags as $tag)
+                <a href="{{ route('questions.filterByTag', $tag->id) }}" class="btn btn-outline-primary m-1 tag-btn">
+                    {{ $tag->body }}
+                </a>
+            @endforeach
+        @else
+            @foreach ($tags as $tag)
+                <a href="{{ route('questions.main') }}" class="btn btn-secondary">全て表示</a>
+                <p class="btn m-1 tag-btn btn-primary">
+                    {{ $tag->body }}
+                </p>
+            @endforeach
+        @endif
     </div>
+
 
     {{--  @dd($questions)  --}}
     @foreach ($questions as $question)
@@ -20,9 +29,11 @@
                 <p class="card-text">投稿者：{{ $question->user->name ?? '匿名' }}さん</p>
                 <p>投稿日時 : {{ $question->created_at }}</p>
                 {{--  @dd(@$question->tags)  --}}
-                <p>タグ：</p>
+                <p class="d-inline">タグ：</p>
                 @foreach ($question->tags as $tag)
-                    <div class="tag">{{ $tag->body }}</div>
+                    <p class="btn btn-outline-primary m-1 tag-btn">
+                        {{ $tag->body }}
+                    </p>
                 @endforeach
             </a>
 

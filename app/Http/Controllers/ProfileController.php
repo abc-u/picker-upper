@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Question;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -15,12 +16,15 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
 
-    public function index(Request $request): View
-    {
-        return view('profile.index', [
-            'user' => $request->user(),
-        ]);
-    }
+     public function index(Request $request): View
+     {
+         $user = $request->user(); // 現在のログインユーザーを取得
+         $questions = Question::where('user_id', $user->id)->get(); // 自分の質問を取得
+
+         return view('profile.index', compact('user', 'questions'));
+     }
+
+
 
 
     public function edit(Request $request): View

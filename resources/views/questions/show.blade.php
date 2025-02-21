@@ -6,12 +6,16 @@
             内容 : {{ $question->body }}
         </p>
         <p class="card-text">投稿者：{{ $question->user->name ?? '匿名' }}</p>
-        投稿日時 : {{ $question->created_at }}
+        <p>
+            投稿日時 : {{ $question->created_at }}
+        </p>
+        <p class="d-inline">タグ：</p>
+        @foreach ($question->tags as $tag)
+            <p class="btn btn-outline-primary m-1 tag-btn">
+                {{ $tag->body }}
+            </p>
+        @endforeach
     </div>
-    <p>タグ：</p>
-    @foreach ($question->tags as $tag)
-        <div class="tag">{{ $tag->body }}</div>
-    @endforeach
     @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $question->user_id))
         <div class="edit-delete-buttons">
             <a href="{{ route('questions.edit', $question->id) }}" class="edit-button">edit</a>
