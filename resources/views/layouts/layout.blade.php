@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title', 'Picker-Upper')</title>
     <!-- Font-awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         crossorigin="anonymous" />
-        <!-- External CSS -->
+    <!-- External CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/master.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/header-design.css') }}" />
@@ -27,11 +29,11 @@
             </a>
         </div>
 
-        <div class="header-menu">
-            <button id="menuButton" class="header-menu-button"><i class="fa-regular fa-user"></i></button>
-            <div id="menu_list" class="header-links">
-                @if (Route::has('login'))
-                    @auth
+        @auth
+            <div class="header-menu">
+                <button id="menuButton" class="header-menu-button"><i class="fa-regular fa-user"></i></button>
+                <div id="menu_list" class="header-links">
+                    @if (Route::has('login'))
                         <div class="header-links_menu out">
                             <a class="header-links_menuList" href="{{ route('questions.main') }}">Dashboard</a>
                             <a class="header-links_menuList" href="{{ route('map.index') }}">MAP</a>
@@ -41,21 +43,27 @@
                                 <button type="submit" class="header-links_menuList">Logout</button>
                             </form>
                         </div>
-                    @else
-                        <div class="header-links_menu out">
-                            <a class="header-links_menuList" href="{{ route('login') }}">Login</a>
-                            <a class="header-links_menuList" href="{{ route('register') }}">Register</a>
-                        </div>
-                    @endauth
-                @endif
+                    @endif
+                </div>
             </div>
-        </div>
+        @else
+            <div class="non-loginUser-menu">
+                <a class="header-links_menuList" href="{{ route('login') }}">Login</a>
+                <a class="header-links_menuList" href="{{ route('register') }}">Register</a>
+            </div>
+        @endauth
     </header>
 
 
     <main>
         <div class="container">
-            @yield('content')
+            <div class="main-item"></div>
+            <div class="main-item">
+                @yield('content')
+            </div>
+            <div class="main-item right">
+                @yield('map-content')
+            </div>
         </div>
     </main>
 
@@ -71,8 +79,8 @@
     <script src="js/map.js"></script>
 
     <!-- Google Maps API -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap">
-    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap"></script>
     <script src="{{ asset('assets/js/header.js') }}"></script>
 </body>
 

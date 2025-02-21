@@ -8,6 +8,28 @@
     --pale-red-color: #ffd9d9;
 }
 
+.main_map-section {
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    position: sticky;
+    top: 140px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    transition: 0.2s ease;
+    border-radius: 10px;
+
+    &:hover {
+        transform: translateY(-5px);
+        color: rgb(112, 112, 255);
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.map-image {
+    width: 100%;
+    padding: 0;
+}
+
 .main_question-container {
     margin-bottom: 24px;
     width: 100%;
@@ -38,10 +60,4 @@
     bottom: 100px; /* 画面下からの距離 */
     right: 30px; /* 画面右からの距離 */
     z-index: 1000; /* 他の要素の上に配置 */
-}
-
-.map-image {
-    width: 500px;
-    height: auto;
-    margin: 30px;
 }
