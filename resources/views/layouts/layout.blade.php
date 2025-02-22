@@ -31,7 +31,15 @@
 
         @auth
             <div class="header-menu">
-                <button id="menuButton" class="header-menu-button"><i class="fa-regular fa-user"></i></button>
+                <button id="menuButton" class="header-menu-button">
+                    {{--  @dd (auth()->user()->user_icon)  --}}
+                    @if (auth()->user()->user_icon)
+                        <img src="{{ asset('assets/img/' . auth()->user()->user_icon) }}"
+                            alt="サンプル画像" class="rounded-circle img-thumbnail" width="400" height="400">
+                    @else
+                        <i class="fa-regular fa-user"></i>
+                    @endif
+                </button>
                 <div id="menu_list" class="header-links">
                     @if (Route::has('login'))
                         <div class="header-links_menu out">

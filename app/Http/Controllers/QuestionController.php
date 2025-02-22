@@ -68,17 +68,29 @@ class QuestionController extends Controller
         return redirect()->route('questions.main');
     }
 
+
+    public function filterByTag(Tag $tag)
+    {
+        $questions = $tag->questions()->with('user')->latest()->get();
+        $tags = Tag::where('id', $tag->id)->get(); // 指定された $tag のみ取得
+
+        return view('questions.main', compact('questions', 'tags'));
+    }
+
     public function store(Request $request)
     {
-        // バリデーション（必要に応じて追加）
-        // $request->validate([
-        //     'title' => 'required|string|max:255',
-        //     'body' => 'required|string',
-        //     'tags' => 'array', // タグは配列で送信される
-        //     'tags.*' => 'exists:tags,id', // 各タグが `tags` テーブルに存在するか確認
-        //     'latitude' => 'nullable|numeric',
-        //     'longitude' => 'nullable|numeric',
-        // ]);
+        // バリデーション
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'body' => 'required|string',
+            'tags' => 'nullable|string', // タグはカンマ区切りの文字列として送信される
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
+        ], [
+            'title.required' => 'タイトルを入力してください。',
+            'title.max' => 'タイトルは255文字以内で入力してください。',
+            'body.required' => '内容を入力してください。',
+        ]);
 
         // 投稿を保存
         $post = new Question;
@@ -90,17 +102,19 @@ class QuestionController extends Controller
         $post->save();
 
         // タグを保存（中間テーブルを利用）
-        if ($request->has('tags')) {
-            $post->tags()->sync($request->tags);
+        if ($request->has('tags') && !empty($request->tags)) {
+            // カンマ区切りの文字列を配列に変換
+            $tags = explode(',', $request->tags);
+
+            // 整数型に変換（無効な値を除去）
+            $tags = array_filter(array_map('intval', $tags), function ($id) {
+                return $id > 0; // 0以下の値を除外
+            });
+
+            // タグを同期
+            $post->tags()->sync($tags);
         }
 
-        return redirect()->route('questions.main')->with('success', '質問が作成されました！');
-    }
-
-    public function filterByTag(Tag $tag)
-    {
-        $questions = $tag->questions()->with('user')->latest()->get();
-        // $tags = $tag; // すべてのタグを取得
-        return view('questions.mainfilter', compact('questions', 'tag'));
+        return redirect()->route('questions.main')->with('success', '質問が作成されました。');
     }
 }

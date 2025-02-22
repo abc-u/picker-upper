@@ -2,6 +2,22 @@
 
 @section('content')
     <h1>Google Maps API - Laravel</h1>
+
+    @if (Route::currentRouteName() === 'map.index')
+        @foreach ($tags as $tag)
+            <a href="{{ route('map.filterByTag', $tag->id) }}" class="btn btn-outline-primary m-1 tag-btn">
+                {{ $tag->body }}
+            </a>
+        @endforeach
+    @else
+        @foreach ($tags as $tag)
+            <a href="{{ route('map.index') }}" class="btn btn-secondary">全て表示</a>
+            <p class="btn m-1 tag-btn btn-primary">
+                {{ $tag->body }}
+            </p>
+        @endforeach
+    @endif
+
     <div id="map" style="width: 100%; height: 500px;"></div>
 
     <!-- LaravelのデータをJavaScriptに渡す -->
