@@ -71,7 +71,7 @@
     @endauth
 @endsection
 
-@section('map-content')
+@section('right-content')
     <div class="main_map-section">
         <h4>view map</h4>
         <a href="{{ route('map.index') }}" class="">
