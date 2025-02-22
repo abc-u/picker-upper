@@ -2,6 +2,8 @@
 
 @section('content')
 
+<link rel="stylesheet" href="{{ asset('assets/css/map.css') }}" />
+
 @if (Route::currentRouteName() === 'map.index')
 @foreach ($tags as $tag)
 <a href="{{ route('map.filterByTag', $tag->id) }}" class="btn btn-outline-primary m-1 tag-btn">

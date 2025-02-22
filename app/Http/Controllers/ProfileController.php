@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Question;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -16,13 +17,19 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
 
-     public function index(Request $request): View
-     {
-         $user = $request->user(); // 現在のログインユーザーを取得
-         $questions = Question::where('user_id', $user->id)->get(); // 自分の質問を取得
+    public function index(Request $request): View
+    {
+        $user = $request->user(); // 現在のログインユーザーを取得
 
-         return view('profile.index', compact('user', 'questions'));
-     }
+        $questions = Question::where('user_id', $user->id)->get(); // 自分の質問を取得
+
+        // 自分が回答した質問を取得
+        $answers = Answer::where('user_id', $user->id)->pluck('questions_id'); // 自分の回答した質問のIDリストを取得
+
+        $answeredQuestions = Question::whereIn('id', $answers)->get(); // 回答した質問を取得
+
+        return view('profile.index', compact('user', 'questions','answeredQuestions'));
+    }
 
 
 

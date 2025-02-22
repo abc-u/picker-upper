@@ -17,7 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = ['username', 'email', 'password', 'user_icon', 'is_admin'];
+    protected $fillable = ['name', 'email', 'password', 'user_icon', 'is_admin'];
 
     public function questions() {
         return $this->hasMany(Question::class);

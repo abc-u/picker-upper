@@ -28,7 +28,7 @@
     @endif
 
     <div class="show_map-section">
-        <h4>投稿場所</h4>
+        <h4 class="title-span">投稿場所</h4>
         <div id="map" style="height: 400px;"></div>
 
         <script>
@@ -49,7 +49,7 @@
         </script>
     </div>
 
-    <p>コメント一覧</p>
+    <h4 class="title-span">コメント一覧</h4>
     @foreach ($question->answers as $answer)
         <div class="show_card answer">
             <div class= "show_card_answer">
@@ -58,14 +58,26 @@
                 <p class="">投稿日時：{{ $answer->created_at }}</p>
             </div>
         </div>
+        @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $question->user_id))
+            <div class="edit-delete-buttons">
+                <a href="{{ route('answers.edit', $answer->id) }}" class="edit-button">edit</a>
+
+                <form action="{{ route('answers.destroy', $answer->id) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <input type="submit" value="delete" class="delete-button" onclick="return confirm('本当に削除しますか？');">
+                </form>
+            </div>
+        @endif
     @endforeach
 
 
-    <h5>以下の記事にコメントします</h5>
+
+    <h5 class="title-span">以下の記事にコメントします</h5>
     <form action="{{ route('comments.store') }}" method="post">
         @csrf
         <input type="hidden" name="question_id" value="{{ $question->id }}">
-        <label>コメント</label>
+        <label class="">コメント</label>
         <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
         <button type="submit" class="btn btn-primary mt-3">コメントする</button>
     </form>
