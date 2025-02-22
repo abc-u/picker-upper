@@ -2,6 +2,7 @@
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}" />
+    <h1 class="title-span">プロフィール</h1>
     <div class="user-profile d-flex align-items-center p-4 bg-light rounded shadow">
         <!-- ユーザー画像 -->
         <div class="user-image me-4">
@@ -20,12 +21,11 @@
     </div>
 
 
-
-    <h3>自分の質問一覧</h3>
+    <h3 class="title-span">自分の質問一覧</h3>
     @foreach ($questions as $question)
         <div class="main_question-container">
             <a href="{{ route('questions.show', $question->id) }}" class="question-card">
-                <h5 class="card-title">タイトル : {{ $question->title }}</h5>
+                <h5 class="card-title comment-title">タイトル : {{ $question->title }}</h5>
                 <p class="card-text">内容 : {{ $question->body }}</p>
                 <p class="card-text">投稿者：{{ $question->user->name ?? '匿名' }}さん</p>
                 <p>投稿日時 : {{ $question->created_at }}</p>

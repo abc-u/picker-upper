@@ -17,7 +17,7 @@
         @endforeach
     @endif
 
-
+<h2 class="title-span">投稿一覧</h2>
 
 
     {{--  @dd($questions)  --}}
@@ -35,6 +35,8 @@
                         {{ $tag->body }}
                     </p>
                 @endforeach
+
+                
                 <div class="container mt-5">
                     <div class="card shadow-sm p-4 rounded" style="max-width: 500px; margin: auto;">
                         <div class="text-center">
