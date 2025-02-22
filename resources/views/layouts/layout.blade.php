@@ -65,12 +65,14 @@
 
     <main>
         <div class="container">
-            <div class="main-item"></div>
+            <div class="main-item">
+                @yield('left-content')
+            </div>
             <div class="main-item">
                 @yield('content')
             </div>
             <div class="main-item right">
-                @yield('map-content')
+                @yield('right-content')
             </div>
         </div>
     </main>
