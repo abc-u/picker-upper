@@ -19,8 +19,25 @@
         @endif
     </div>
 
+    @php
+        $sortOrder = request('sort', 'desc'); // デフォルトは降順（新しい投稿が上）
+        $questions = $sortOrder === 'asc' ? $questions->sortBy('created_at') : $questions->sortByDesc('created_at');
+    @endphp
+
+    <!-- 並び順変更ボタン -->
+    <div class="sort-buttons mb-3">
+        <a href="?sort=asc" class="btn btn-outline-secondary">昇順</a>
+        <a href="?sort=desc" class="btn btn-outline-secondary">降順</a>
+    </div>
+
+
+
     <h2 class="title-span">投稿一覧</h2>
 
+    {{--  <!-- ページネーションのリンクを表示 -->
+    <div class="pagination-links">
+        {{ $questions->appends(request()->query())->links() }}
+    </div>  --}}
 
     {{--  @dd($questions)  --}}
     @foreach ($questions as $question)
@@ -30,7 +47,7 @@
 
                 <div class="user-info-section">
                     <div class="user-image">
-                        <img src="{{ asset('storage/user_icon/' . ($question->user->user_icon ? basename($question->user->user_icon) : 'sample.png')) }}"
+                        <img src="{{ asset($question->user->user_icon ? $question->user->user_icon : 'assets/img/user_icon/sample.png') }}"
                             alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm">
                     </div>
                     <div class="user-info">
@@ -70,6 +87,7 @@
             <i class="fa-solid fa-square-plus custom-icon"></i>
         </a>
     @endauth
+
 @endsection
 
 @section('right-content')
