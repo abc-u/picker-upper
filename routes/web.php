@@ -70,6 +70,10 @@ Route::get('/questions/{id}', [QuestionController::class, 'show'])->name('questi
 
 Route::get('/map', [MapController::class, 'index'])->name('map.index');
 
+Route::get('/map/realtimemode', [MapController::class, 'realTimeMode'])->name('map.realtimemode');
+
+Route::get('/map/realtimemode/tag/{tag}', [MapController::class, 'filterByTagRealTimeMode'])->name('map.filterByTagRealTimeMode');
+
 Route::get('/questions/tag/{tag}', [QuestionController::class, 'filterByTag'])->name('questions.filterByTag');
 
 Route::get('/map/tag/{tag}', [MapController::class, 'filterByTag'])->name('map.filterByTag');
