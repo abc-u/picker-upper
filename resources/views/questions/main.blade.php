@@ -92,7 +92,7 @@
 
 @section('right-content')
     <div class="main_map-section">
-        <h4>view map</h4>
+        <h4>View on map</h4>
         <a href="{{ route('map.index') }}" class="">
             <img src="{{ asset('assets/img/map.png') }}" alt="説明文" class="map-image">
         </a>

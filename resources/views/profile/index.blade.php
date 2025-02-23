@@ -31,7 +31,6 @@
         <li class="nav-item">
             <a class="nav-link" id="answers-tab" data-bs-toggle="tab" href="#answers">
                 <h5 class="title-span">自分の回答一覧</h5>
-            </a>
         </li>
     </ul>
 
@@ -39,18 +38,21 @@
         <!-- 自分の質問一覧 -->
         <div class="tab-pane fade show active" id="questions">
             @foreach ($questions as $question)
-                <div class="main_question-container">
+                <div class="user_question-container">
                     <a href="{{ route('questions.show', $question->id) }}" class="question-card">
-                        <h5 class="card-title comment-title">タイトル : {{ $question->title }}</h5>
-                        <p class="card-text">内容 : {{ $question->body }}</p>
-                        <p class="card-text">投稿者：{{ $question->user->name ?? '匿名' }}さん</p>
-                        <p>投稿日時 : {{ $question->created_at }}</p>
-                        @foreach ($question->tags as $tag)
-                            <p class="btn btn-outline-primary m-1 tag-btn">
-                                {{ $tag->body }}
-                            </p>
-                        @endforeach
+
+                        <div class="question-card_content">
+                            <h5 class="question-title">{{ $question->title }}</h5>
+                            <div class="question-tags">
+                                @foreach ($question->tags as $tag)
+                                    <span>
+                                        {{ $tag->body }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        </div>
                     </a>
+
 
                     @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $question->user_id))
                         <div class="edit-delete-buttons">
@@ -72,32 +74,35 @@
             @foreach ($answeredQuestions as $answeredQuestion)
                 <div class="main_question-container">
                     <a href="{{ route('questions.show', $answeredQuestion->id) }}" class="question-card">
-                        <h5 class="card-title comment-title">タイトル : {{ $answeredQuestion->title }}</h5>
-                        <p class="card-text">内容 : {{ $answeredQuestion->body }}</p>
-                        <p class="card-text">投稿者：{{ $answeredQuestion->user->name ?? '匿名' }}さん</p>
-                        <p>投稿日時 : {{ $answeredQuestion->created_at }}</p>
-                        @foreach ($answeredQuestion->tags as $tag)
-                            <p class="btn btn-outline-primary m-1 tag-btn">
-                                {{ $tag->body }}
-                            </p>
-                        @endforeach
-                    </a>
 
-                    @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $answeredQuestion->user_id))
-                        <div class="edit-delete-buttons">
-                            <a href="{{ route('questions.edit', $answeredQuestion->id) }}" class="edit-button">edit</a>
-                            <form action="{{ route('questions.destroy', $answeredQuestion->id) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <input type="submit" value="delete" class="delete-button"
-                                    onclick="return confirm('本当に削除しますか？');">
-                            </form>
+
+                        <div class="user-info-section">
+                            <div class="user-image">
+                                <img src="{{ asset('storage/user_icon/' . ($answeredQuestion->user->user_icon ? basename($answeredQuestion->user->user_icon) : 'sample.png')) }}"
+                                    alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm">
+                            </div>
+                            <div class="user-info">
+                                <h5 class="user-name">{{ $answeredQuestion->user->name }}</h5>
+                                <p class="question_created_at">{{ $question->created_at }}</p>
+                            </div>
                         </div>
-                    @endif
+
+                        <div class="question-card_content">
+                            <h5 class="question-title">{{ $answeredQuestion->title }}</h5>
+                            <div class="question-tags">
+                                @foreach ($answeredQuestion->tags as $tag)
+                                    <span>
+                                        {{ $tag->body }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        </div>
+                    </a>
                 </div>
             @endforeach
         </div>
     </div>
+
 
     <!-- Bootstrapのタブを動作させるためのJavaScript -->
     <script>

@@ -1,9 +1,9 @@
 /* ボタンを中央に配置 */
 #current-location-btn {
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    /* width: 200px; */
+    margin: 16px auto;
 
     background: linear-gradient(135deg, #ff7e5f, #feb47b); /* グラデーション */
     color: white;
@@ -14,11 +14,13 @@
     border-radius: 30px; /* 角を丸く */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 12px;
     text-align: center;
+    transition: 0.2s ease;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
 }
+
 

@@ -10,7 +10,9 @@
 
 .show_card {
     background-color: white;
-    padding: 20px 15px;
+    padding-top: 0px;
+    padding-bottom: 20px;
+    border-radius: 20px;
     border-radius: 20px;
     background-color: white;
     border: 1px solid #000000;
@@ -22,18 +24,71 @@
 
     &.answer {
         background-color: var(--pale-red-color);
-
     }
 
     .show_card_answer {
+        padding-left: 16px !important;
+        margin: 0;
+        padding: 0;
 
         p {
-            padding: 0px;
-            margin-bottom: 0px;
+            font-size: 20px;
+            padding: 0;
+            margin: 0;
         }
     }
 }
 
 .show_map-section {
     width: 100%;
+}
+
+.user-info-section {
+    width: 100%;
+    display: flex;
+    padding: 8px;
+    border-bottom: 1px solid rgb(196, 196, 196);
+    margin-bottom: 16px;
+
+    .user-image {
+        margin-right: 16px;
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    .user-info {
+        .user-name {
+            margin: 0;
+            font-weight: bold;
+        }
+        .question_created_at {
+            margin: 0;
+            color: rgb(181, 181, 181);
+            font-weight: bold;
+        }
+    }
+}
+
+.question-card_content {
+    padding: 0 16px;
+
+    .question-title {
+        font-size: 32px;
+        margin-bottom: 16px;
+    }
+
+    .question-tags {
+        display: flex;
+        justify-content: right;
+        margin-right: 8px;
+
+        span {
+            margin-right: 8px;
+            background-color: var(--tag-color);
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+    }
 }

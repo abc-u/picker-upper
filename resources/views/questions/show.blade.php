@@ -1,20 +1,28 @@
 @extends('layouts.layout')
 @section('content')
     <div class="show_card">
-        <h5 class="card-title">タイトル : {{ $question->title }}</h5>
-        <p class="card-text">
-            内容 : {{ $question->body }}
-        </p>
-        <p class="card-text">投稿者：{{ $question->user->name ?? '匿名' }}</p>
-        <p>
-            投稿日時 : {{ $question->created_at }}
-        </p>
-        {{--  <p class="d-inline">タグ：</p>  --}}
-        @foreach ($question->tags as $tag)
-            <p class="btn btn-outline-primary m-1 tag-btn">
-                {{ $tag->body }}
-            </p>
-        @endforeach
+        <div class="user-info-section">
+            <div class="user-image">
+                <img src="{{ asset('storage/user_icon/' . ($question->user->user_icon ? basename($question->user->user_icon) : 'sample.png')) }}"
+                    alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm">
+            </div>
+            <div class="user-info">
+                <h5 class="user-name">{{ $question->user->name }}</h5>
+                <p class="question_created_at">{{ $question->created_at }}</p>
+            </div>
+        </div>
+
+        <div class="question-card_content">
+            <h5 class="question-title">{{ $question->title }}</h5>
+            <p class="question-body">{{ $question->body }}</p>
+            <div class="question-tags">
+                @foreach ($question->tags as $tag)
+                    <span>
+                        {{ $tag->body }}
+                    </span>
+                @endforeach
+            </div>
+        </div>
     </div>
     @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $question->user_id))
         <div class="edit-delete-buttons">
@@ -52,23 +60,56 @@
     <h4 class="title-span">コメント一覧</h4>
     @foreach ($question->answers as $answer)
         <div class="show_card answer">
+
+            <div class="user-info-section">
+                <div class="user-image">
+                    <img src="{{ asset('storage/user_icon/' . ($answer->user->user_icon ? basename($answer->user->user_icon) : 'sample.png')) }}"
+                        alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm">
+                </div>
+                <div class="user-info">
+                    <h5 class="user-name">{{ $answer->user->name }}</h5>
+                    <p class="question_created_at">{{ $answer->created_at }}</p>
+                </div>
+            </div>
+
             <div class= "show_card_answer">
-                <h5 class="">{{ $answer->body }}</h5>
-                <p class="">投稿者：{{ $answer->user->name }}</p>
-                <p class="">投稿日時：{{ $answer->created_at }}</p>
+                <p class="">{{ $answer->body }}</p>
+            </div>
+
+            @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $question->user_id))
+                <div class="edit-delete-buttons">
+                    <a href="{{ route('answers.edit', $answer->id) }}" class="edit-button">edit</a>
+
+                    <form action="{{ route('answers.destroy', $answer->id) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <input type="submit" value="delete" class="delete-button" onclick="return confirm('本当に削除しますか？');">
+                    </form>
+                </div>
+            @endif
+        </div>
+
+        {{-- <div class="user-info-section">
+            <div class="user-image">
+                <img src="{{ asset('storage/user_icon/' . ($question->user->user_icon ? basename($question->user->user_icon) : 'sample.png')) }}"
+                    alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm">
+            </div>
+            <div class="user-info">
+                <h5 class="user-name">{{ $question->user->name }}</h5>
+                <p class="question_created_at">{{ $question->created_at }}</p>
             </div>
         </div>
-        @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $question->user_id))
-            <div class="edit-delete-buttons">
-                <a href="{{ route('answers.edit', $answer->id) }}" class="edit-button">edit</a>
 
-                <form action="{{ route('answers.destroy', $answer->id) }}" method="post">
-                    @csrf
-                    @method('delete')
-                    <input type="submit" value="delete" class="delete-button" onclick="return confirm('本当に削除しますか？');">
-                </form>
+        <div class="question-card_content">
+            <h5 class="question-title">{{ $question->title }}</h5>
+            <div class="question-tags">
+                @foreach ($question->tags as $tag)
+                    <span>
+                        {{ $tag->body }}
+                    </span>
+                @endforeach
             </div>
-        @endif
+        </div> --}}
     @endforeach
 
 
