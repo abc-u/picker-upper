@@ -26,25 +26,28 @@ class QuestionController extends Controller
     {
         return view('questions.map');
     }
-    
+
     function main()
     {
-        $questions = Question::all();
+        $questions = Question::latest()->get();
         $tags = Tag::all(); // すべてのタグを取得
 
         return view('questions.main', compact('questions', 'tags'));
     }
+
     function create()
     {
         $tags = Tag::all(); // すべてのタグを取得
         return view('questions.create', compact('tags'));
     }
+
     function show($id)
     {
         $question = Question::find($id);
 
         return view('questions.show', compact('question'));
     }
+
     function edit($id)
     {
         $question = Question::find($id);

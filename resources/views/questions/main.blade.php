@@ -2,20 +2,22 @@
 
 @section('content')
     <!-- タグフィルタ -->
-    @if (Route::currentRouteName() === 'questions.main')
-        @foreach ($tags as $tag)
-            <a href="{{ route('questions.filterByTag', $tag->id) }}" class="btn btn-outline-primary m-1 tag-btn">
-                {{ $tag->body }}
-            </a>
-        @endforeach
-    @else
-        @foreach ($tags as $tag)
-            <a href="{{ route('questions.main') }}" class="btn btn-secondary">全て表示</a>
-            <p class="btn m-1 tag-btn btn-primary">
-                {{ $tag->body }}
-            </p>
-        @endforeach
-    @endif
+    <div class="tags-slider">
+        @if (Route::currentRouteName() === 'questions.main')
+            @foreach ($tags as $tag)
+                <a href="{{ route('questions.filterByTag', $tag->id) }}" class="btn btn-outline-primary m-1 tag-btn">
+                    {{ $tag->body }}
+                </a>
+            @endforeach
+        @else
+            @foreach ($tags as $tag)
+                <a href="{{ route('questions.main') }}" class="btn btn-secondary">全て表示</a>
+                <p class="btn m-1 tag-btn btn-primary">
+                    {{ $tag->body }}
+                </p>
+            @endforeach
+        @endif
+    </div>
 
     <h2 class="title-span">投稿一覧</h2>
 
@@ -24,36 +26,30 @@
     @foreach ($questions as $question)
         <div class="main_question-container">
             <a href="{{ route('questions.show', $question->id) }}" class="question-card">
-                <h5 class="card-title">タイトル : {{ $question->title }}</h5>
-                <p class="card-text">内容 : {{ $question->body }}</p>
-                <p class="card-text">投稿者：{{ $question->user->name ?? '匿名' }}さん</p>
-                <p>投稿日時 : {{ $question->created_at }}</p>
-                {{--  @dd(@$question->tags)  --}}
-                {{--  <p class="d-inline">タグ：</p>  --}}
-                @foreach ($question->tags as $tag)
-                    <p class="btn btn-outline-primary m-1 tag-btn">
-                        {{ $tag->body }}
-                    </p>
-                @endforeach
 
 
-                <div class="container mt-5">
-                    <div class="card shadow-sm p-4 rounded" style="max-width: 500px; margin: auto;">
-                        <div class="text-center">
-                            <div class="user-image mb-3">
-                                {{--  <img src="{{ asset('assets/img/' . ($question->user->user_icon ? basename($question->user->user_icon) : 'sample.png')) }}"
-                                    alt="ユーザー画像" class="rounded-circle img-thumbnail shadow" width="150" height="150">  --}}
-                                <img src="{{ asset('storage/user_icon/' . ($question->user->user_icon ? basename($question->user->user_icon) : 'sample.png')) }}"
-                                    alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm" width="200"
-                                    height="200">
-                            </div>
-                            <h4 class="fw-bold">{{ $question->user->name }}</h4>
-                        </div>
+                <div class="user-info-section">
+                    <div class="user-image">
+                        <img src="{{ asset('storage/user_icon/' . ($question->user->user_icon ? basename($question->user->user_icon) : 'sample.png')) }}"
+                            alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm">
+                    </div>
+                    <div class="user-info">
+                        <h5 class="user-name">{{ $question->user->name }}</h5>
+                        <p class="question_created_at">{{ $question->created_at }}</p>
+                    </div>
+                </div>
+
+                <div class="question-card_content">
+                    <h5 class="question-title">{{ $question->title }}</h5>
+                    <div class="question-tags">
+                        @foreach ($question->tags as $tag)
+                            <span>
+                                {{ $tag->body }}
+                            </span>
+                        @endforeach
                     </div>
                 </div>
             </a>
-
-
 
 
             @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $question->user_id))

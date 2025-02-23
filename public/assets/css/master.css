@@ -21,10 +21,23 @@ body {
 main {
     margin-top: 140px;
 
-    .container {
-        max-width: 100%;
+    .main-container {
+        width: 100%;
         display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-columns: 1fr 55% 1fr;
+        grid-template-areas:
+        "main-itemA main-itemB main-itemC";
+
+        .main-itemA {
+            grid-area: main-itemA;
+        }
+        .main-itemB {
+            /* max-width: 66%; */
+            grid-area: main-itemB;
+        }
+        .main-itemC {
+            grid-area: main-itemC;
+        }
     }
 }
 

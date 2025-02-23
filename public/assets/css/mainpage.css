@@ -6,6 +6,20 @@
     --deleteButton-color: #e63946;
     --deleteButton-color_hover: #952c35;
     --pale-red-color: #ffd9d9;
+    --tag-color: #dddbdb;
+}
+
+.tags-slider {
+    overflow: auto;
+    scroll-snap-type: x;
+    display: flex;
+    margin-bottom: 16px;
+
+    a {
+        scroll-snap-align: start;
+        width: auto;
+        flex: none;
+    }
 }
 
 .main_map-section {
@@ -20,7 +34,6 @@
 
     &:hover {
         transform: translateY(-5px);
-        color: rgb(112, 112, 255);
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
     }
 }
@@ -36,7 +49,8 @@
 
     .question-card {
         background-color: white;
-        padding: 20px 15px;
+        padding-top: 0px;
+        padding-bottom: 20px;
         border-radius: 20px;
         background-color: white;
         border: 1px solid #000000;
@@ -45,11 +59,65 @@
         display: block;
         color: #000000;
         transition: 0.2s ease;
+        /* display: flex; */
 
         &:hover {
             transform: translateY(-5px);
-            color: rgb(112, 112, 255);
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .user-info-section {
+            width: 100%;
+            display: flex;
+            padding: 8px;
+            border-bottom: 1px solid rgb(196, 196, 196);
+            margin-bottom: 16px;
+
+            .user-image {
+                margin-right: 16px;
+                img {
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+
+            .user-info {
+                .user-name {
+                    margin: 0;
+                    font-weight: bold;
+                }
+                .question_created_at {
+                    margin: 0;
+                    color: rgb(181, 181, 181);
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .question-card_content {
+            padding: 0 16px;
+
+            .question-title {
+                font-size: 32px;
+                transition: 0.2s ease;
+
+                &:hover {
+                    color: rgb(112, 112, 255);
+                }
+            }
+
+            .question-tags {
+                display: flex;
+                justify-content: right;
+                margin-right: 8px;
+
+                span {
+                    margin-right: 8px;
+                    background-color: var(--tag-color);
+                    padding: 2px 8px;
+                    border-radius: 10px;
+                }
+            }
         }
     }
 }

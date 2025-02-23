@@ -66,14 +66,14 @@
 
 
     <main>
-        <div class="container">
-            <div class="main-item">
+        <div class="main-container">
+            <div class="main-itemA">
                 @yield('left-content')
             </div>
-            <div class="main-item">
+            <div class="main-itemB">
                 @yield('content')
             </div>
-            <div class="main-item right">
+            <div class="main-itemC right">
                 @yield('right-content')
             </div>
         </div>
