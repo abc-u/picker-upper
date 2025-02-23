@@ -29,8 +29,16 @@ class QuestionController extends Controller
 
     function main()
     {
-        $questions = Question::latest()->get();
+        // $questions = Question::latest()->paginate(5);
+        $questions = Question::all();
+        // $questions = Question::orderBy('created_at', $sortOrder)->paginate(10);
+        // $questions = Question::paginate(10);
+        // $questions = Question::orderBy('created_at', 'desc')->paginate(10);
+
         $tags = Tag::all(); // すべてのタグを取得
+
+        // dd($questions);
+
 
         return view('questions.main', compact('questions', 'tags'));
     }
@@ -80,6 +88,15 @@ class QuestionController extends Controller
 
         return view('questions.main', compact('questions', 'tags'));
     }
+
+    // public function filterByTag(Tag $tag)
+    // {
+    //     $questions = $tag->questions()->with('user')->latest()->paginate(10); // ✅ paginate() に変更
+    //     $tags = Tag::all(); // すべてのタグを取得
+
+    //     return view('questions.main', compact('questions', 'tags'));
+    // }
+
 
     public function store(Request $request)
     {

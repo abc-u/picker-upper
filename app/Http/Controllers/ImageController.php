@@ -16,6 +16,7 @@ class ImageController extends Controller
     }
 
     // 画像のアップロード処理
+
     public function uploadImage(Request $request)
     {
         $request->validate([
@@ -23,12 +24,18 @@ class ImageController extends Controller
         ]);
 
         if ($request->file('image')) {
-            // 画像を `storage/app/public/user_icon/` に保存
-            $path = $request->file('image')->store('user_icon', 'public');
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $destinationPath = public_path('assets/img/user_icon');
 
-            // 現在のログインユーザーの情報を更新
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+
+            $file->move($destinationPath, $filename);
+
             $user = Auth::user();
-            $user->user_icon = $path; // パスをデータベースに保存
+            $user->user_icon = 'assets/img/user_icon/' . $filename;
             $user->save();
 
             return back()->with('success', 'プロフィール画像が更新されました！');
