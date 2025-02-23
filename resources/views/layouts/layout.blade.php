@@ -34,8 +34,10 @@
                 <button id="menuButton" class="header-menu-button">
                     {{--  @dd (auth()->user()->user_icon)  --}}
                     @if (auth()->user()->user_icon)
-                        <img src="{{ asset('assets/img/' . auth()->user()->user_icon) }}"
-                            alt="サンプル画像" class="rounded-circle img-thumbnail" width="400" height="400">
+                        {{--  <img src="{{ asset('assets/img/' . auth()->user()->user_icon) }}"
+                            alt="サンプル画像" class="rounded-circle img-thumbnail" width="400" height="400">  --}}
+                        <img src="{{ asset('storage/user_icon/' . (auth()->user()->user_icon ? basename(auth()->user()->user_icon) : 'sample.png')) }}"
+                            alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm" width="200" height="200">
                     @else
                         <i class="fa-regular fa-user"></i>
                     @endif

@@ -30,4 +30,32 @@ class AnswerController extends Controller
 
         return redirect()->route('questions.show', $question->id);
     }
+
+    function edit($id)
+    {
+        $answer = Answer::find($id);
+        return view('answers.edit', compact('answer'));
+    }
+
+    function update(Request $request, $id)
+    {
+        $answer = Answer::find($id);
+
+        $question = Question::find($answer->questions_id);
+        // $answer->title = $request->title;
+        $answer->body = $request->body;
+        $answer->save();
+
+        return redirect()->route('questions.show', $question->id);
+    }
+
+    function destroy($id)
+    {
+        $answer = Answer::find($id);
+        // dd($answer);
+
+        $question = Question::find($answer->questions_id);
+        $answer->delete();
+        return redirect()->route('questions.show', $question->id);
+    }
 }

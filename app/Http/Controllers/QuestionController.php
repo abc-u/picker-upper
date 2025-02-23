@@ -26,6 +26,7 @@ class QuestionController extends Controller
     {
         return view('questions.map');
     }
+    
     function main()
     {
         $questions = Question::all();

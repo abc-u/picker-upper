@@ -6,7 +6,9 @@
     <div class="user-profile d-flex align-items-center p-4 bg-light rounded shadow">
         <!-- ユーザー画像 -->
         <div class="user-image me-4">
-            <img src="{{ asset('assets/img/' . ($user->user_icon ? basename($user->user_icon) : 'sample.png')) }}"
+            {{--  <img src="{{ asset('/img/' . ($user->user_icon ? basename($user->user_icon) : 'sample.png')) }}"
+                alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm" width="200" height="200">  --}}
+            <img src="{{ asset('storage/user_icon/' . (auth()->user()->user_icon ? basename(auth()->user()->user_icon) : 'sample.png')) }}"
                 alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm" width="200" height="200">
         </div>
 
@@ -19,6 +21,7 @@
             <a href="{{ route('profile.update') }}">編集</a>
         </div>
     </div>
+
 
 
     <h3 class="title-span">自分の質問一覧</h3>
@@ -42,6 +45,37 @@
                 <div class="edit-delete-buttons">
                     <a href="{{ route('questions.edit', $question->id) }}" class="edit-button">edit</a>
                     <form action="{{ route('questions.destroy', $question->id) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <input type="submit" value="delete" class="delete-button" onclick="return confirm('本当に削除しますか？');">
+                    </form>
+                </div>
+            @endif
+        </div>
+    @endforeach
+
+
+    <h3 class="title-span">自分の回答一覧</h3>
+    @foreach ($answeredQuestions as $answeredQuestion)
+        <div class="main_question-container">
+            <a href="{{ route('questions.show', $answeredQuestion->id) }}" class="question-card">
+                <h5 class="card-title comment-title">タイトル : {{ $answeredQuestion->title }}</h5>
+                <p class="card-text">内容 : {{ $answeredQuestion->body }}</p>
+                <p class="card-text">投稿者：{{ $answeredQuestion->user->name ?? '匿名' }}さん</p>
+                <p>投稿日時 : {{ $answeredQuestion->created_at }}</p>
+                {{--  @dd(@$answeredQuestion->tags)  --}}
+                {{--  <p class="d-inline">タグ：</p>  --}}
+                @foreach ($answeredQuestion->tags as $tag)
+                    <p class="btn btn-outline-primary m-1 tag-btn">
+                        {{ $tag->body }}
+                    </p>
+                @endforeach
+            </a>
+
+            @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $answeredQuestion->user_id))
+                <div class="edit-delete-buttons">
+                    <a href="{{ route('questions.edit', $answeredQuestion->id) }}" class="edit-button">edit</a>
+                    <form action="{{ route('questions.destroy', $answeredQuestion->id) }}" method="post">
                         @csrf
                         @method('delete')
                         <input type="submit" value="delete" class="delete-button" onclick="return confirm('本当に削除しますか？');">

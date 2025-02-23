@@ -17,7 +17,7 @@
         @endforeach
     @endif
 
-<h2 class="title-span">投稿一覧</h2>
+    <h2 class="title-span">投稿一覧</h2>
 
 
     {{--  @dd($questions)  --}}
@@ -36,13 +36,16 @@
                     </p>
                 @endforeach
 
-                
+
                 <div class="container mt-5">
                     <div class="card shadow-sm p-4 rounded" style="max-width: 500px; margin: auto;">
                         <div class="text-center">
                             <div class="user-image mb-3">
-                                <img src="{{ asset('assets/img/' . ($question->user->user_icon ? basename($question->user->user_icon) : 'sample.png')) }}"
-                                    alt="ユーザー画像" class="rounded-circle img-thumbnail shadow" width="150" height="150">
+                                {{--  <img src="{{ asset('assets/img/' . ($question->user->user_icon ? basename($question->user->user_icon) : 'sample.png')) }}"
+                                    alt="ユーザー画像" class="rounded-circle img-thumbnail shadow" width="150" height="150">  --}}
+                                <img src="{{ asset('storage/user_icon/' . ($question->user->user_icon ? basename($question->user->user_icon) : 'sample.png')) }}"
+                                    alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm" width="200"
+                                    height="200">
                             </div>
                             <h4 class="fw-bold">{{ $question->user->name }}</h4>
                         </div>
