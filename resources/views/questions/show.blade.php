@@ -3,8 +3,12 @@
     <div class="show_card">
         <div class="user-info-section">
             <div class="user-image">
-                <img src="{{ asset('storage/user_icon/' . ($question->user->user_icon ? basename($question->user->user_icon) : 'sample.png')) }}"
-                    alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm">
+                @if ($question->user->user_icon)
+                    <img src="{{ asset($question->user->user_icon) }}" alt="ユーザー画像"
+                        class="rounded-circle img-thumbnail shadow-sm">
+                @else
+                    <i class="fa-regular fa-user rounded-circle img-thumbnail shadow-sm"></i>
+                @endif
             </div>
             <div class="user-info">
                 <h5 class="user-name">{{ $question->user->name }}</h5>
@@ -14,7 +18,7 @@
 
         <div class="question-card_content">
             <h5 class="question-title">{{ $question->title }}</h5>
-            <p class="question-body">{{ $question->body }}</p>
+            <p class="question-body">{!! nl2br(e($question->body)) !!}</p>
             <div class="question-tags">
                 @foreach ($question->tags as $tag)
                     <span>
@@ -63,8 +67,12 @@
 
             <div class="user-info-section">
                 <div class="user-image">
-                    <img src="{{ asset('storage/user_icon/' . ($answer->user->user_icon ? basename($answer->user->user_icon) : 'sample.png')) }}"
-                        alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm">
+                    @if ($answer->user->user_icon)
+                        <img src="{{ asset($answer->user->user_icon) }}" alt="ユーザー画像"
+                            class="rounded-circle img-thumbnail shadow-sm">
+                    @else
+                        <i class="fa-regular fa-user rounded-circle img-thumbnail shadow-sm"></i>
+                    @endif
                 </div>
                 <div class="user-info">
                     <h5 class="user-name">{{ $answer->user->name }}</h5>
@@ -120,6 +128,6 @@
         <input type="hidden" name="question_id" value="{{ $question->id }}">
         <label class="">コメント</label>
         <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
-        <button type="submit" class="btn btn-primary mt-3">コメントする</button>
+        <button type="submit" id="submit_btn" class="btn btn-primary mt-3">コメントする</button>
     </form>
 @endsection

@@ -17,9 +17,21 @@ header {
     position: fixed;
     width: 100%;
 
+    @media screen and (max-width: 767px) {
+        padding: 8px 16px;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    }
+
     .header_logo-container {
         .logo {
             height: 80px;
+
+            @media screen and (max-width: 767px) {
+                height: 60px;
+            }
         }
     }
 }
@@ -31,6 +43,10 @@ header {
     justify-content: center;
     flex-direction: column;
     margin-right: 37px;
+
+    @media screen and (max-width: 767px) {
+        margin-right: 0px;
+    }
 }
 
 .header-menu-button {
@@ -38,15 +54,22 @@ header {
     width: 70px;
     height: 70px;
     cursor: pointer;
-    background: transparent;
-    border: 3px solid white;
+    background: none;
+    border: none;
     border-radius: 50%;
     color: white;
     font-size: 40px;
+    outline: none;
+    border: 2px solid white;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 .header-links {
-
     .header-links_menu {
         width: 270px;
         display: flex;
@@ -55,8 +78,8 @@ header {
         padding: 16px 0;
         text-align: center;
         position: absolute;
-        top: 96px;
-        transition: .3s ease;
+        top: 86px;
+        transition: 0.3s ease;
 
         &.in {
             right: 0;
@@ -75,7 +98,7 @@ header {
             border: none;
             font-size: 24px;
             font-weight: bold;
-            transition: .3s ease;
+            transition: 0.3s ease;
 
             &:hover {
                 background-color: var(--white);
@@ -94,5 +117,9 @@ header {
         font-size: 24px;
         margin-right: 16px;
         font-weight: bold;
+
+        @media screen and (max-width: 767px) {
+            font-size: 16px;
+        }
     }
 }

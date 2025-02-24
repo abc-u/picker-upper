@@ -1,17 +1,44 @@
 .user-profile {
-    display: flex;
-    align-items: center; /* 垂直方向の中央揃え */
-    justify-content: space-between; /* 左右に配置 */
-}
 
-.user-info {
-    flex: 1; /* 名前とメールを左側に配置 */
+    .user-info {
+        p {
+            @media screen and (max-width: 767px) {
+                font-size: 12px;
+            }
+        }
+    }
 }
 
 .user-image {
-    flex-shrink: 0; /* 画像のサイズを固定 */
-}
+    margin-right: 16px;
 
+    img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+
+        @media screen and (max-width: 767px) {
+            width: 120px;
+            height: 120px;
+        }
+    }
+
+    i {
+        padding-top: 19px;
+        width: 160px;
+        height: 160px;
+        display: inline-block;
+        text-align: center;
+        font-size: 100px;
+        color: rgb(156, 156, 156);
+
+        @media screen and (max-width: 767px) {
+            width: 120px;
+            height: 120px;
+            font-size: 60px;
+        }
+    }
+}
 
 .user_question-container {
     margin-bottom: 24px;
@@ -76,6 +103,11 @@
                 &:hover {
                     color: rgb(112, 112, 255);
                 }
+
+                @media screen and (max-width: 767px) {
+                    font-size: 26px;
+                    margin-bottom: 10px;
+                }
             }
 
             .question-tags {
@@ -83,14 +115,32 @@
                 justify-content: right;
                 margin-right: 8px;
 
-
                 span {
                     margin-right: 8px;
                     background-color: var(--tag-color);
                     padding: 2px 8px;
                     border-radius: 10px;
+
+                    @media screen and (max-width: 767px) {
+                        font-size: 12px;
+                    }
                 }
             }
         }
     }
+}
+
+.title-span {
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+        font-size: 18px;
+        margin: 8px;
+    }
+
+    @media screen and (max-width: 767px) {
+        font-size: 14px;
+        margin: 4px;
+    }
+
+
 }

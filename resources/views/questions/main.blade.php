@@ -47,8 +47,12 @@
 
                 <div class="user-info-section">
                     <div class="user-image">
-                        <img src="{{ asset($question->user->user_icon ? $question->user->user_icon : 'assets/img/user_icon/sample.png') }}"
-                            alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm">
+                        @if ($question->user->user_icon)
+                            <img src="{{ asset($question->user->user_icon) }}" alt="ユーザー画像"
+                                class="rounded-circle img-thumbnail shadow-sm">
+                        @else
+                            <i class="fa-regular fa-user rounded-circle img-thumbnail shadow-sm"></i>
+                        @endif
                     </div>
                     <div class="user-info">
                         <h5 class="user-name">{{ $question->user->name }}</h5>
@@ -82,6 +86,7 @@
         </div>
     @endforeach
 
+    {{-- Create btn --}}
     @auth
         <a href="{{ route('questions.create') }}" class="">
             <i class="fa-solid fa-square-plus custom-icon"></i>
@@ -90,6 +95,7 @@
 
 @endsection
 
+{{-- Map section --}}
 @section('right-content')
     <div class="main_map-section">
         <h4>View on map</h4>

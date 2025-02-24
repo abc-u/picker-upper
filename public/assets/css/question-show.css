@@ -35,6 +35,10 @@
             font-size: 20px;
             padding: 0;
             margin: 0;
+
+            @media screen and (max-width: 767px) {
+                font-size: 18px;
+            }
         }
     }
 }
@@ -52,9 +56,21 @@
 
     .user-image {
         margin-right: 16px;
+
         img {
             width: 50px;
             height: 50px;
+            object-fit: cover;
+        }
+
+        i {
+            padding-top: 6px;
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            text-align: center;
+            font-size: 32px;
+            color: rgb(156, 156, 156);
         }
     }
 
@@ -77,6 +93,15 @@
     .question-title {
         font-size: 32px;
         margin-bottom: 16px;
+
+        @media screen and (max-width: 767px) {
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+    }
+
+    .question-body {
+        margin-bottom: 8px;
     }
 
     .question-tags {
@@ -89,6 +114,16 @@
             background-color: var(--tag-color);
             padding: 2px 8px;
             border-radius: 10px;
+
+            @media screen and (max-width: 767px) {
+                font-size: 12px;
+            }
         }
     }
+}
+
+#submit_btn {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 16px;
 }

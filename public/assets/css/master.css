@@ -8,6 +8,12 @@
     --pale-red-color: #ffd9d9;
 }
 
+@media screen and (max-width: 767px) {
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+}
+
 /* 全体のレイアウト */
 body {
     display: flex;
@@ -25,18 +31,38 @@ main {
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 55% 1fr;
-        grid-template-areas:
-        "main-itemA main-itemB main-itemC";
+        grid-template-areas: "main-itemA main-itemB main-itemC";
 
         .main-itemA {
             grid-area: main-itemA;
         }
         .main-itemB {
-            /* max-width: 66%; */
             grid-area: main-itemB;
+
+            @media screen and (max-width: 1024px) {
+                width: 100vw;
+                padding: 0 16px;
+                margin-bottom: 16px;
+            }
         }
         .main-itemC {
             grid-area: main-itemC;
+
+            @media screen and (max-width: 1024px) {
+                width: 100vw;
+                padding: 0 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            max-width: 100vw;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto;
+            grid-template-areas:
+                "main-itemC"
+                "main-itemB"
+                "main-itemA";
         }
     }
 }
@@ -94,3 +120,7 @@ footer {
     border-left: solid 5px #7db4e6; /*左線*/
 }
 
+.current-location {
+    text-align: center;
+    margin-top: 16px;
+}

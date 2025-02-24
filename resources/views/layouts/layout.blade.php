@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title', 'Picker-Upper')</title>
     <!-- Font-awesome -->
+    <link rel="icon" href="{{ asset('assets/img/picker-upper_logo.gif') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -18,6 +19,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/header-design.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/question-show.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/mainpage.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/map.css') }}" />
+
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
@@ -32,12 +35,9 @@
         @auth
             <div class="header-menu">
                 <button id="menuButton" class="header-menu-button">
-                    {{--  @dd (auth()->user()->user_icon)  --}}
                     @if (auth()->user()->user_icon)
-                        {{--  <img src="{{ asset('assets/img/' . auth()->user()->user_icon) }}"
-                            alt="サンプル画像" class="rounded-circle img-thumbnail" width="400" height="400">  --}}
-                        <img src="{{ asset(auth()->user()->user_icon ? auth()->user()->user_icon : 'assets/img/user_icon/sample.png') }}"
-                            alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm" width="200" height="200">
+                        <img src="{{ asset(auth()->user()->user_icon) }}" alt="ユーザー画像"
+                            class="rounded-circle img-thumbnail shadow-sm">
                     @else
                         <i class="fa-regular fa-user"></i>
                     @endif
