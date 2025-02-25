@@ -7,23 +7,25 @@
 
     @include('profile.partials.delete-user-form')
 
-    @if (session('success'))
+    @if(session('success'))
         <p style="color: green;">{{ session('success') }}</p>
     @endif
 
-    @if (session('error'))
+    @if(session('error'))
         <p style="color: red;">{{ session('error') }}</p>
     @endif
 
+
+    <h4 class="title-span">画像をアップロード</h4>
     <form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="file" name="image" accept="image/*" required>
         @error('image')
             <p style="color: red;">{{ $message }}</p> <!-- エラーメッセージ表示 -->
         @enderror
-        <button type="submit"
-            style="margin-top: 10px; padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        <button type="submit" style="margin-top: 10px; padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
             アップロード
         </button>
     </form>
+
 @endsection

@@ -64,6 +64,7 @@ class MapController extends Controller
                 'latitude' => $location->latitude,
                 'longitude' => $location->longitude,
                 'url' => route('questions.show', $location->id),
+                'user_id' => $location->user_id,
             ];
         });
 
@@ -86,5 +87,21 @@ class MapController extends Controller
         $tags = Tag::where('id', $tag->id)->get(); // 指定された $tag のみ取得
 
         return view('map.realtimemode', compact('locations', 'tags'));
+    }
+
+    public function streetview()
+    {
+        $locations = Question::all()->map(function ($location) {
+            return [
+                'id' => $location->id,
+                'title' => $location->title,
+                'latitude' => $location->latitude,
+                'longitude' => $location->longitude,
+                'url' => route('questions.show', $location->id),
+            ];
+        });
+
+        $tags = Tag::all(); // すべてのタグを取得
+        return view('map.streetview', compact('locations', 'tags'));
     }
 }
