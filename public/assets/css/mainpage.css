@@ -19,6 +19,19 @@
         scroll-snap-align: start;
         width: auto;
         flex: none;
+
+        @media screen and (max-width: 767px) {
+            font-size: 12px;
+        }
+    }
+}
+
+.sort-buttons {
+
+    a {
+        @media screen and (max-width: 767px) {
+            font-size: 12px;
+        }
     }
 }
 
@@ -54,9 +67,22 @@
 
             .user-image {
                 margin-right: 16px;
+
                 img {
                     width: 50px;
                     height: 50px;
+                    object-fit: cover;
+                }
+
+                i {
+                    padding-top: 6px;
+                    width: 50px;
+                    height: 50px;
+                    display: inline-block;
+                    text-align: center;
+                    font-size: 32px;
+                    color: rgb(156, 156, 156);
+
                 }
             }
 
@@ -84,6 +110,16 @@
                 &:hover {
                     color: rgb(112, 112, 255);
                 }
+
+                @media screen and (min-width: 768px) and (max-width: 1024px) {
+                    font-size: 32px;
+                }
+
+                @media screen and (max-width: 767px) {
+                    margin-bottom: 8px;
+                    font-size: 20px;
+                }
+
             }
 
             .question-tags {
@@ -91,24 +127,42 @@
                 justify-content: right;
                 margin-right: 8px;
 
+                @media screen and (max-width: 767px) {
+                    overflow: auto;
+                }
+
 
                 span {
                     margin-right: 8px;
                     background-color: var(--tag-color);
                     padding: 2px 8px;
                     border-radius: 10px;
+
+                    @media screen and (max-width: 767px) {
+                        font-size: 10px;
+                    }
                 }
             }
         }
     }
 }
 
+
+/*---------------------- Create btn section ---------------------------*/
+
 .custom-icon {
-    font-size: 100px;
+    font-size: 90px;
     position: fixed;
-    bottom: 100px;
-    right: 30px;
+    bottom: 50px;
+    right: 60px;
     z-index: 1000;
+
+    @media screen and (max-width: 767px) {
+        font-size: 66px;
+        right: 30px;
+        bottom: 44px;
+        border-radius: 50%;
+    }
 }
 
 
@@ -119,7 +173,7 @@
     width: 90%;
     margin: 0 auto;
     position: sticky;
-    top: 240px;
+    top: 140px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     transition: 0.2s ease;
     border-radius: 10px;
@@ -128,9 +182,25 @@
         transform: translateY(-5px);
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
     }
+
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+    }
 }
 
 .map-image {
     width: 100%;
     padding: 0;
+}
+
+
+/*---------------------- Create page tag section ---------------------------*/
+
+.flex-wrap {
+
+    button {
+        @media screen and (max-width: 767px) {
+            font-size: 12px;
+        }
+    }
 }

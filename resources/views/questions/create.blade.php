@@ -1,8 +1,9 @@
 @extends('layouts.layout')
+
 @section('content')
     <form action="{{ route('questions.store') }}" method="POST">
         @csrf
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label>タイトル</label>
             <input type="text" class="form-control @error('title') is-invalid @enderror" placeholder="タイトルを入力して下さい"
                 name="title" value="{{ old('title') }}">
@@ -22,9 +23,9 @@
         <input type="hidden" id="latitude" name="latitude">
         <input type="hidden" id="longitude" name="longitude">
 
-        <div>
-            <button type="button" class="btn btn-secondary" onclick="getLocation()">現在地を取得</button>
-        </div>
+
+        <button id="current-location-btn" type="button" onclick="getLocation()">現在地を取得</button>
+
 
         <div class="form-group mt-3">
             <label>タグを選択:</label>
@@ -40,7 +41,7 @@
         </div>
 
         <div>
-            <button type="submit" class="btn btn-primary mt-3">作成</button>
+            <button type="submit" id="submit_btn" class="btn btn-primary mt-3">作成</button>
         </div>
     </form>
 

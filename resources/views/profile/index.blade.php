@@ -5,9 +5,15 @@
     <h1 class="title-span">プロフィール</h1>
     <div class="user-profile d-flex align-items-center p-4 bg-light rounded shadow">
         <!-- ユーザー画像 -->
-        <div class="user-image me-4">
-            <img src="{{ asset(auth()->user()->user_icon ? auth()->user()->user_icon : 'assets/img/user_icon/sample.png') }}"
-                alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm" width="200" height="200">
+        <div class="user-image">
+            {{-- <img src="{{ asset(auth()->user()->user_icon ? auth()->user()->user_icon : 'assets/img/user_icon/sample.png') }}"
+                alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm" width="200" height="200"> --}}
+            @if (auth()->user()->user_icon)
+                <img src="{{ asset(auth()->user()->user_icon) }}" alt="ユーザー画像"
+                    class="rounded-circle img-thumbnail shadow-sm">
+            @else
+                <i class="fa-regular fa-user rounded-circle img-thumbnail shadow-sm"></i>
+            @endif
 
         </div>
 
@@ -17,7 +23,7 @@
             <p class="fs-5 text-dark">{{ $user->name }}</p>
             <p class="fw-bold mb-1 text-secondary">メールアドレス</p>
             <p class="fs-6 text-muted">{{ $user->email }}</p>
-            <a href="{{ route('profile.update') }}" class="btn btn-outline-primary">編集</a>
+            <a href="{{ route('profile.update') }}" class="btn btn-outline-warning">編集</a>
         </div>
     </div>
 
@@ -31,6 +37,7 @@
         <li class="nav-item">
             <a class="nav-link" id="answers-tab" data-bs-toggle="tab" href="#answers">
                 <h5 class="title-span">自分の回答一覧</h5>
+            </a>
         </li>
     </ul>
 
@@ -78,8 +85,12 @@
 
                         <div class="user-info-section">
                             <div class="user-image">
-                                <img src="{{ asset('storage/user_icon/' . ($answeredQuestion->user->user_icon ? basename($answeredQuestion->user->user_icon) : 'sample.png')) }}"
-                                    alt="ユーザー画像" class="rounded-circle img-thumbnail shadow-sm">
+                                @if ($question->user->user_icon)
+                                    <img src="{{ asset($question->user->user_icon) }}" alt="ユーザー画像"
+                                        class="rounded-circle img-thumbnail shadow-sm">
+                                @else
+                                    <i class="fa-regular fa-user rounded-circle img-thumbnail shadow-sm"></i>
+                                @endif
                             </div>
                             <div class="user-info">
                                 <h5 class="user-name">{{ $answeredQuestion->user->name }}</h5>
