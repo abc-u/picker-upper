@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\ProfileController;
@@ -61,6 +62,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/images', [ImageController::class, 'index'])->name('images.index');
 
     Route::delete('/images/{id}', [ImageController::class, 'destroy'])->name('images.destroy');
+
+    //edit tag auth
+    Route::get('/tags/edit', [TagController::class, 'index'])->name('tags.index');
+
+    // Route::put('/tags/update', [TagController::class, 'update'])->name('tags.update');
+
+    Route::delete('/tags/{id}', [TagController::class, 'destroy'])->name('tags.destroy');
+
+    Route::put('/tags/{id}', [TagController::class, 'update'])->name('tags.update');
+
+    // Route::get('/tags/create', [TagController::class, 'create'])->name('tags.create');
+
+    Route::post('/tags/store', [TagController::class, 'store'])->name('tags.store');
+
 });
 
 
@@ -73,6 +88,8 @@ Route::get('/map', [MapController::class, 'index'])->name('map.index');
 Route::get('/map/realtimemode', [MapController::class, 'realTimeMode'])->name('map.realtimemode');
 
 Route::get('/map/realtimemode/tag/{tag}', [MapController::class, 'filterByTagRealTimeMode'])->name('map.filterByTagRealTimeMode');
+
+Route::get('/map/streetview', [MapController::class, 'streetview'])->name('map.streetview');
 
 Route::get('/questions/tag/{tag}', [QuestionController::class, 'filterByTag'])->name('questions.filterByTag');
 

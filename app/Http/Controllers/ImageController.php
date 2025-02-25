@@ -24,6 +24,17 @@ class ImageController extends Controller
         ]);
 
         if ($request->file('image')) {
+            $user = Auth::user();
+
+            // 既存の画像がある場合は削除（デフォルト画像を除外）
+            if ($user->user_icon && $user->user_icon !== 'assets/img/user_icon/sample.png') {
+                $oldImagePath = public_path($user->user_icon);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                    \Log::info("Deleted old image: " . $oldImagePath);
+                }
+            }
+
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
             $destinationPath = public_path('assets/img/user_icon');
@@ -34,7 +45,7 @@ class ImageController extends Controller
 
             $file->move($destinationPath, $filename);
 
-            $user = Auth::user();
+            // 新しい画像のパスを保存
             $user->user_icon = 'assets/img/user_icon/' . $filename;
             $user->save();
 
@@ -43,6 +54,7 @@ class ImageController extends Controller
 
         return back()->with('error', '画像のアップロードに失敗しました。');
     }
+
 
     // // アップロードされた画像を一覧表示
     // public function index()
