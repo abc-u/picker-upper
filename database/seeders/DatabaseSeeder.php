@@ -13,19 +13,20 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $this->call([
-            UserSeeder::class,
-            MapTagSeeder::class,
-        ]);
+        // まずユーザーを作成
+        $this->call(UserSeeder::class);
 
-        // questions テーブルにデモデータを10件作成
+        // その後に質問を作成
         $questions = Question::factory()->count(10)->create();
 
         // 各質問に対して3件の回答を作成
-        foreach ($questions as $question) {
-            Answer::factory()->count(3)->create([
-                'questions_id' => $question->id,
-            ]);
-        }
+        // foreach ($questions as $question) {
+        //     Answer::factory()->count(3)->create([
+        //         'question_id' => $question->id, // 修正ポイント（後述）
+        //     ]);
+        // }
+
+        // 他のSeederを呼び出し
+        $this->call(MapTagSeeder::class);
     }
 }

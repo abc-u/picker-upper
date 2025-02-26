@@ -83,19 +83,19 @@
             <div class= "show_card_answer">
                 <p class="">{{ $answer->body }}</p>
             </div>
-
-            @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $question->user_id))
-                <div class="edit-delete-buttons">
-                    <a href="{{ route('answers.edit', $answer->id) }}" class="edit-button">edit</a>
-
-                    <form action="{{ route('answers.destroy', $answer->id) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <input type="submit" value="delete" class="delete-button" onclick="return confirm('本当に削除しますか？');">
-                    </form>
-                </div>
-            @endif
         </div>
+
+                    @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $answer->user_id))
+                        <div class="edit-delete-buttons">
+                            <a href="{{ route('answers.edit', $answer->id) }}" class="edit-button">edit</a>
+
+                            <form action="{{ route('answers.destroy', $answer->id) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" value="delete" class="delete-button" onclick="return confirm('本当に削除しますか？');">
+                            </form>
+                        </div>
+                    @endif
 
         {{-- <div class="user-info-section">
             <div class="user-image">
@@ -127,7 +127,24 @@
         @csrf
         <input type="hidden" name="question_id" value="{{ $question->id }}">
         <label class="">コメント</label>
-        <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
+        <textarea class="form-control @error('body') is-invalid @enderror" placeholder="内容" rows="5" name="body">{{ old("body") }}</textarea>
+
+        @error('body')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+
+        {{--  @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif  --}}
+
         <button type="submit" id="submit_btn" class="btn btn-primary mt-3">コメントする</button>
+
+
     </form>
 @endsection

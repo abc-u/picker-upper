@@ -5,7 +5,7 @@
         @method('put')
         <div class="form-group mb-3">
             <label>タイトル</label>
-            <input type="text" class="form-control" value="{{ old("title", $question->title) }}" name="title">
+            <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{ old("title", $question->title) }}" name="title">
 
             @error('title')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
             <label>内容</label>
-            <textarea class="form-control" rows="5" name="body">{{ $question->body }}</textarea>
+            <textarea class="form-control @error('body') is-invalid @enderror" rows="5" name="body">{{ $question->body }}</textarea>
             @error('body')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror

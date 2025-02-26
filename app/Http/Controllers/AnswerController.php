@@ -21,6 +21,17 @@ class AnswerController extends Controller
             return redirect()->route('login')->with('error', 'ログインしてください');
         }
 
+        $request->validate([
+            'body' => 'required|string|min:5',
+            'question_id' => 'required|exists:questions,id',
+        ], [
+            'body.required' => '回答を入力してください。',
+            'body.min' => '回答は1文字以上入力してください。',
+            'question_id.required' => '質問IDが必要です。',
+            'question_id.exists' => '指定された質問が存在しません。',
+        ]);
+
+
         $question = Question::find($request->question_id);
         $answer = new Answer;
         $answer->body = $request->body;
