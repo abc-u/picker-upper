@@ -19,20 +19,28 @@
         @endif
     </div>
 
-    @php
+    {{--  @php
         $sortOrder = request('sort', 'desc'); // デフォルトは降順（新しい投稿が上）
         $questions = $sortOrder === 'asc' ? $questions->sortBy('created_at') : $questions->sortByDesc('created_at');
-    @endphp
+    @endphp  --}}
 
-    <!-- 並び順変更ボタン -->
+    {{--  <!-- 並び順変更ボタン -->
     <div class="sort-buttons mb-3">
         <a href="?sort=asc" class="btn btn-outline-secondary">昇順</a>
         <a href="?sort=desc" class="btn btn-outline-secondary">降順</a>
-    </div>
+    </div>  --}}
 
 
 
     <h2 class="title-span">投稿一覧</h2>
+
+    {{--  <div class="container">
+        @foreach ($questions as $question)
+            {{ $question->name }}
+        @endforeach
+    </div>  --}}
+
+    {{ $questions->links() }}
 
     {{--  <!-- ページネーションのリンクを表示 -->
     <div class="pagination-links">
