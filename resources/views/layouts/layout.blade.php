@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/header-design.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/question-show.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/mainpage.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/login-register.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/map.css') }}" />
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
