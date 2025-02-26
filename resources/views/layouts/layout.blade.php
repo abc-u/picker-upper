@@ -33,6 +33,7 @@
             </a>
         </div>
 
+        {{--  <p>{{ auth()->user()->name }}</p>  --}}
         @auth
             <div class="header-menu">
                 <button id="menuButton" class="header-menu-button">

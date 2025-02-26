@@ -94,6 +94,8 @@
         </div>
     @endforeach
 
+    {{ $questions->links() }}
+
     {{-- Create btn --}}
     @auth
         <a href="{{ route('questions.create') }}" class="">

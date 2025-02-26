@@ -28,7 +28,7 @@ class QuestionFactory extends Factory
             'title'    => $this->faker->sentence,
             'body'     => $this->faker->paragraph,
             // user_id は既存のユーザーが存在する前提、またはここでUserファクトリーを利用
-            'user_id'  => User::factory(),
+            'user_id' => \App\Models\User::inRandomOrder()->first()->id,
             // Cebu City周辺のランダムな緯度・経度を生成
             'latitude'  => $this->faker->latitude($minLatitude, $maxLatitude),
             'longitude' => $this->faker->longitude($minLongitude, $maxLongitude),
