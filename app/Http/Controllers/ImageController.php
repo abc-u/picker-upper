@@ -31,7 +31,7 @@ class ImageController extends Controller
                 $oldImagePath = public_path($user->user_icon);
                 if (file_exists($oldImagePath)) {
                     unlink($oldImagePath);
-                    \Log::info("Deleted old image: " . $oldImagePath);
+                    // Log::info("Deleted old image: " . $oldImagePath);
                 }
             }
 

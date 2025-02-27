@@ -85,17 +85,17 @@
             </div>
         </div>
 
-                    @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $answer->user_id))
-                        <div class="edit-delete-buttons">
-                            <a href="{{ route('answers.edit', $answer->id) }}" class="edit-button">edit</a>
+        @if (auth()->check() && (auth()->user()->is_admin || auth()->user()->id === $answer->user_id))
+            <div class="edit-delete-buttons">
+                <a href="{{ route('answers.edit', $answer->id) }}" class="edit-button">edit</a>
 
-                            <form action="{{ route('answers.destroy', $answer->id) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <input type="submit" value="delete" class="delete-button" onclick="return confirm('本当に削除しますか？');">
-                            </form>
-                        </div>
-                    @endif
+                <form action="{{ route('answers.destroy', $answer->id) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <input type="submit" value="delete" class="delete-button" onclick="return confirm('本当に削除しますか？');">
+                </form>
+            </div>
+        @endif
 
         {{-- <div class="user-info-section">
             <div class="user-image">
@@ -127,7 +127,7 @@
         @csrf
         <input type="hidden" name="question_id" value="{{ $question->id }}">
         <label class="">コメント</label>
-        <textarea class="form-control @error('body') is-invalid @enderror" placeholder="内容" rows="5" name="body">{{ old("body") }}</textarea>
+        <textarea class="form-control @error('body') is-invalid @enderror" placeholder="内容" rows="5" name="body">{{ old('body') }}</textarea>
 
         @error('body')
             <div class="invalid-feedback">{{ $message }}</div>

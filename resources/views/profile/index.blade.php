@@ -85,8 +85,8 @@
 
                         <div class="user-info-section">
                             <div class="user-image">
-                                @if ($question->user->user_icon)
-                                    <img src="{{ asset($question->user->user_icon) }}" alt="ユーザー画像"
+                                @if ($answeredQuestion->user->user_icon)
+                                    <img src="{{ asset($answeredQuestion->user->user_icon) }}" alt="ユーザー画像"
                                         class="rounded-circle img-thumbnail shadow-sm">
                                 @else
                                     <i class="fa-regular fa-user rounded-circle img-thumbnail shadow-sm"></i>
@@ -94,7 +94,7 @@
                             </div>
                             <div class="user-info">
                                 <h5 class="user-name">{{ $answeredQuestion->user->name }}</h5>
-                                <p class="question_created_at">{{ $question->created_at }}</p>
+                                <p class="question_created_at">{{ $answeredQuestion->created_at }}</p>
                             </div>
                         </div>
 

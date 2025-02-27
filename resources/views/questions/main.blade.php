@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- タグフィルタ -->
-    <div class="tags-slider">
+    <div class="tags-slider left-content">
         @if (Route::currentRouteName() === 'questions.main')
             @foreach ($tags as $tag)
                 <a href="{{ route('questions.filterByTag', $tag->id) }}" class="btn btn-outline-primary m-1 tag-btn">
